@@ -1,5 +1,9 @@
 # Angular Demo
 
+[![codecov](https://codecov.io/gh/cedricduffournet/ngx-demo/branch/master/graph/badge.svg)](https://codecov.io/gh/cedricduffournet/ngx-demo)
+[![Build Status](https://travis-ci.com/cedricduffournet/ngx-demo.svg?branch=master)](https://travis-ci.com/cedricduffournet/ngx-demo)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
 This project is using [Angular CLI](https://github.com/angular/angular-cli).
 
 I'm using this repository as a starter kit to create Web App based on angular. Hope it can help you to learn more about Angular 8+ concepts.
