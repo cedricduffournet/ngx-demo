@@ -11,7 +11,7 @@ I'm using this repository as a starter kit to create Web App based on angular. H
 git clone https://github.com/cedricduffournet/ngx-demo.git
 
 #Enter in app folder
-cd angular-demo
+cd ngx-demo
 
 #Install package
 yarn
