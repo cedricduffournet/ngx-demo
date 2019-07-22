@@ -20,9 +20,9 @@ yarn
 yarn start
 ```
 
-The application's backend is available on <https://github.com/cedricduffournet/symfony-api-rest-starter>. If you don't want to install backend locally, use the demo api for development environment by changing apiHost in `environment.ts`:
-
 use login : `superadmin@dev.com` / pwd : `superadminpwd` to connect
+
+The application's backend is available on <https://github.com/cedricduffournet/symfony-api-rest-starter>. If you don't want to install backend locally, use the demo api for development environment by changing apiHost in `environment.ts`:
 
 Change
 
