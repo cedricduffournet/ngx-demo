@@ -18,9 +18,9 @@
     "prettier:write": "yarn prettier:check --write",
     "jest:clearcache": "jest --clearCache",
     "jest:test": "jest",
-    "jest:test:watch": "jest  --watch",
-    "jest:snapshot": "jest  -u",
-    "jest:coverage": "jest  --coverage  -u",
+    "jest:test:watch": "jest --watch",
+    "jest:snapshot": "jest -u",
+    "jest:coverage": "jest --coverage  -u",
     "clean:dist": "./node_modules/.bin/rimraf dist",
     "clean:package": "./node_modules/.bin/rimraf node_modules",
     "clean:all": "yarn clean:dist && yarn clean:package"
@@ -79,6 +79,6 @@
     "ts-node": "^5.0.1",
     "tslint": "^5.18.0",
     "typescript": "~3.4.5",
-    "webpack-bundle-analyzer": "^2.13.1"
+    "webpack-bundle-analyzer": "^3.3.2"
   }
 }
