@@ -6,7 +6,7 @@ import { Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 import * as fromCivilities from '@app/civility/state/reducers';
-import { DeleteCivilityModalActions } from '@app/civility/state/actions';
+import { CivilityDeleteModalActions } from '@app/civility/state/actions';
 import { Civility } from '@app/civility/models/civility';
 
 @Component({
@@ -50,7 +50,7 @@ export class CivilityDeleteModalComponent implements OnInit, OnDestroy {
 
   onDelete(civility: Civility) {
     this.store.dispatch(
-      DeleteCivilityModalActions.deleteCivility({ civility })
+      CivilityDeleteModalActions.deleteCivility({ civility })
     );
   }
 }

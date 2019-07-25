@@ -11,7 +11,7 @@ import { ValidationActionModule } from '@app/shared/validation-action';
 import { ModalWrapperModule } from '@app/shared/modal';
 
 import { CivilityAddModalComponent } from '@app/civility/containers';
-import { AddCivilityModalActions } from '@app/civility/state/actions';
+import { CivilityAddModalActions } from '@app/civility/state/actions';
 import {
   CivilityAddComponent,
   CivilityFormComponent
@@ -62,7 +62,7 @@ describe('CivilityAddModalComponent', () => {
       code: 'code',
       name: 'name'
     } as Civility;
-    const action = AddCivilityModalActions.addCivility({ civility });
+    const action = CivilityAddModalActions.addCivility({ civility });
     fixture.detectChanges();
     component.onAdd(civility);
 

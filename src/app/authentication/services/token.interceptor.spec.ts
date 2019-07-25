@@ -5,10 +5,7 @@ import {
 } from '@angular/common/http/testing';
 import { of, throwError } from 'rxjs';
 import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
-import {
-  TokenInterceptor,
-  AuthService
-} from '@app/authentication/services';
+import { TokenInterceptor, AuthService } from '@app/authentication/services';
 import { AuthToken } from '@app/authentication/models/auth';
 import { AuthActions } from '@app/authentication/state/actions';
 

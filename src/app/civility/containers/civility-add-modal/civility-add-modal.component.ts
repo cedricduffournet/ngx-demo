@@ -6,7 +6,7 @@ import { Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 import * as fromCivilities from '@app/civility/state/reducers';
-import { AddCivilityModalActions } from '@app/civility/state/actions';
+import { CivilityAddModalActions } from '@app/civility/state/actions';
 import { Civility } from '@app/civility/models/civility';
 
 @Component({
@@ -46,6 +46,6 @@ export class CivilityAddModalComponent implements OnInit, OnDestroy {
   }
 
   onAdd(civility: Civility) {
-    this.store.dispatch(AddCivilityModalActions.addCivility({ civility }));
+    this.store.dispatch(CivilityAddModalActions.addCivility({ civility }));
   }
 }

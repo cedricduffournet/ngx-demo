@@ -2,9 +2,9 @@ import { reducer } from '@app/civility/state/reducers/civility-collection.reduce
 import * as fromCivilities from '@app/civility/state/reducers/civility-collection.reducer';
 
 import {
-  ListCivilityViewActions,
-  AddCivilityModalActions,
-  DeleteCivilityModalActions,
+  CivilityListViewActions,
+  CivilityAddModalActions,
+  CivilityDeleteModalActions,
   CivilityApiActions
 } from '@app/civility/state/actions';
 import { Civility } from '@app/civility/models/civility';
@@ -20,7 +20,7 @@ describe('CivilityCollectionReducer', () => {
 
   describe('LOAD', () => {
     it('should set loading to true', () => {
-      const action = ListCivilityViewActions.loadCivilities();
+      const action = CivilityListViewActions.loadCivilities();
       const result = reducer(fromCivilities.INITIAL_STATE, action);
       expect(result).toMatchSnapshot();
     });
@@ -71,12 +71,12 @@ describe('CivilityCollectionReducer', () => {
   });
 
   describe('ADD', () => {
-    it('should set adding to true on AddCivilityModalActions.addCivility', () => {
+    it('should set adding to true on CivilityAddModalActions.addCivility', () => {
       const civility = {
         code: 'AddCode',
         name: 'AddName'
       } as Civility;
-      const action = AddCivilityModalActions.addCivility({
+      const action = CivilityAddModalActions.addCivility({
         civility
       });
       const result = reducer(fromCivilities.INITIAL_STATE, action);
@@ -124,8 +124,8 @@ describe('CivilityCollectionReducer', () => {
       expect(result).toMatchSnapshot();
     });
 
-    it('should set adding to false on ListCivilityViewActions.showAddCivilityModal', () => {
-      const action = ListCivilityViewActions.showAddCivilityModal();
+    it('should set adding to false on CivilityListViewActions.showAddCivilityModal', () => {
+      const action = CivilityListViewActions.showAddCivilityModal();
       const result = reducer(initialState, action);
       expect(result).toMatchSnapshot();
     });
@@ -138,7 +138,7 @@ describe('CivilityCollectionReducer', () => {
         code: 'RemoveCode',
         name: 'RemoveName'
       };
-      const action = DeleteCivilityModalActions.deleteCivility({
+      const action = CivilityDeleteModalActions.deleteCivility({
         civility
       });
       const result = reducer(fromCivilities.INITIAL_STATE, action);
@@ -180,8 +180,8 @@ describe('CivilityCollectionReducer', () => {
       expect(result).toMatchSnapshot();
     });
 
-    it('should set removing to false, remove to false on ListCivilityViewActions.showDeleteCivilityModal', () => {
-      const action = ListCivilityViewActions.showDeleteCivilityModal();
+    it('should set removing to false, remove to false on CivilityListViewActions.showDeleteCivilityModal', () => {
+      const action = CivilityListViewActions.showDeleteCivilityModal();
       const result = reducer(initialState, action);
       expect(result).toMatchSnapshot();
     });

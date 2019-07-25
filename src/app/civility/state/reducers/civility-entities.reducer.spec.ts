@@ -2,8 +2,8 @@ import { reducer } from '@app/civility/state/reducers/civility-entities.reducer'
 import * as fromCivilities from '@app/civility/state/reducers/civility-entities.reducer';
 
 import {
-  ListCivilityViewActions,
-  UpdateCivilityModalActions,
+  CivilityListViewActions,
+  CivilityUpdateModalActions,
   CivilityApiActions
 } from '@app/civility/state/actions';
 import { Civility } from '@app/civility/models/civility';
@@ -52,7 +52,7 @@ describe('CivilitiyEntitiesReducer', () => {
     const data = { id, civility };
 
     it('should set updating to true', () => {
-      const action = UpdateCivilityModalActions.updateCivility({ data });
+      const action = CivilityUpdateModalActions.updateCivility({ data });
       const result = reducer(fromCivilities.INITIAL_STATE, action);
 
       expect(result).toMatchSnapshot();
@@ -121,7 +121,7 @@ describe('CivilitiyEntitiesReducer', () => {
     });
 
     it('should set updating to false, updated to false when show modal', () => {
-      const action = ListCivilityViewActions.showUpdateCivilityModal();
+      const action = CivilityListViewActions.showUpdateCivilityModal();
       const result = reducer(initialState, action);
 
       expect(result).toMatchSnapshot();
@@ -187,7 +187,7 @@ describe('CivilitiyEntitiesReducer', () => {
     const id = 1;
 
     it('should set selected civility (id 1)', () => {
-      const action = ListCivilityViewActions.selectCivility({ id });
+      const action = CivilityListViewActions.selectCivility({ id });
       const result = reducer(initialState, action);
 
       expect(result).toMatchSnapshot();

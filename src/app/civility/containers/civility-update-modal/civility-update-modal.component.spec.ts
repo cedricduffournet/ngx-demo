@@ -17,7 +17,7 @@ import {
 import { CivilityUpdateModalComponent } from '@app/civility/containers';
 import * as fromCivilities from '@app/civility/state/reducers';
 
-import { UpdateCivilityModalActions } from '@app/civility/state/actions';
+import { CivilityUpdateModalActions } from '@app/civility/state/actions';
 import { Civility } from '@app/civility/models/civility';
 
 describe('DeleteCivilityModalComponent', () => {
@@ -72,7 +72,7 @@ describe('DeleteCivilityModalComponent', () => {
         name: 'name'
       } as Civility
     };
-    const action = UpdateCivilityModalActions.updateCivility({ data });
+    const action = CivilityUpdateModalActions.updateCivility({ data });
     fixture.detectChanges();
     component.onUpdate(data);
 

@@ -2,9 +2,9 @@ import { createReducer, on } from '@ngrx/store';
 
 import { EntityState } from '@app/shared/models/EntityState';
 import {
-  ListCivilityViewActions,
+  CivilityListViewActions,
   CivilityApiActions,
-  UpdateCivilityModalActions
+  CivilityUpdateModalActions
 } from '@app/civility/state/actions';
 import { Civility } from '@app/civility/models/civility';
 import { NormalizedData } from '@app/shared/models/normalized.model';
@@ -43,7 +43,7 @@ export const reducer = createReducer(
     ...state,
     entities: civilities.entities.civilities
   })),
-  on(UpdateCivilityModalActions.updateCivility, state => ({
+  on(CivilityUpdateModalActions.updateCivility, state => ({
     ...state,
     updated: false,
     updating: true
@@ -53,7 +53,7 @@ export const reducer = createReducer(
   ),
   on(
     CivilityApiActions.updateCivilityFailure,
-    ListCivilityViewActions.showUpdateCivilityModal,
+    CivilityListViewActions.showUpdateCivilityModal,
     state => ({
       ...state,
       updating: false,
@@ -67,7 +67,7 @@ export const reducer = createReducer(
       ...civility.entities.civilities
     }
   })),
-  on(ListCivilityViewActions.selectCivility, (state, { id }) => ({
+  on(CivilityListViewActions.selectCivility, (state, { id }) => ({
     ...state,
     selectedId: id
   }))

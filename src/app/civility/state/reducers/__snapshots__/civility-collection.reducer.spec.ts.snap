@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CivilityCollectionReducer ADD should set adding to true on AddCivilityModalActions.addCivility 1`] = `
+exports[`CivilityCollectionReducer ADD should set adding to true on CivilityAddModalActions.addCivility 1`] = `
 Object {
   "added": false,
   "adding": true,
@@ -12,7 +12,7 @@ Object {
 }
 `;
 
-exports[`CivilityCollectionReducer ADD_FAILURE & SHOW_MODAL_ADD should set adding to false on ListCivilityViewActions.showAddCivilityModal 1`] = `
+exports[`CivilityCollectionReducer ADD_FAILURE & SHOW_MODAL_ADD should set adding to false on CivilityListViewActions.showAddCivilityModal 1`] = `
 Object {
   "added": false,
   "adding": false,
@@ -78,7 +78,7 @@ Object {
 }
 `;
 
-exports[`CivilityCollectionReducer DELETE_FAILURE & SHOW_MODAL_DELETE should set removing to false, remove to false on ListCivilityViewActions.showDeleteCivilityModal 1`] = `
+exports[`CivilityCollectionReducer DELETE_FAILURE & SHOW_MODAL_DELETE should set removing to false, remove to false on CivilityListViewActions.showDeleteCivilityModal 1`] = `
 Object {
   "added": false,
   "adding": false,

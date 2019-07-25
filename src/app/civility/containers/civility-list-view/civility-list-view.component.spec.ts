@@ -10,7 +10,7 @@ import {
 } from '@app/civility/components';
 import { CivilityListViewComponent } from '@app/civility/containers';
 import * as fromCivilities from '@app/civility/state/reducers';
-import { ListCivilityViewActions } from '@app/civility/state/actions';
+import { CivilityListViewActions } from '@app/civility/state/actions';
 import { SharedModule } from '@app/shared/shared.module';
 
 describe('CivilityListViewComponent', () => {
@@ -59,37 +59,37 @@ describe('CivilityListViewComponent', () => {
   });
 
   it('should dispatch loadCivilities on init', () => {
-    const action = ListCivilityViewActions.loadCivilities();
+    const action = CivilityListViewActions.loadCivilities();
     fixture.detectChanges();
     expect(store.dispatch).toHaveBeenCalledWith(action);
   });
 
   it('should dispatch showAddCivilityModal on add event', () => {
-    const action = ListCivilityViewActions.showAddCivilityModal();
+    const action = CivilityListViewActions.showAddCivilityModal();
     component.onAdd();
     expect(store.dispatch).toHaveBeenCalledWith(action);
   });
 
   it('should dispatch showUpdateCivilityModal on update event', () => {
-    const action = ListCivilityViewActions.showUpdateCivilityModal();
+    const action = CivilityListViewActions.showUpdateCivilityModal();
     component.onUpdate(1);
     expect(store.dispatch).toHaveBeenCalledWith(action);
   });
 
   it('should dispatch selectCivility on update event', () => {
-    const action = ListCivilityViewActions.selectCivility({ id: 1 });
+    const action = CivilityListViewActions.selectCivility({ id: 1 });
     component.onUpdate(1);
     expect(store.dispatch).toHaveBeenCalledWith(action);
   });
 
   it('should dispatch showDeleteCivilityModal on update event', () => {
-    const action = ListCivilityViewActions.showDeleteCivilityModal();
+    const action = CivilityListViewActions.showDeleteCivilityModal();
     component.onDelete(1);
     expect(store.dispatch).toHaveBeenCalledWith(action);
   });
 
   it('should dispatch selectCivility on deletee event', () => {
-    const action = ListCivilityViewActions.selectCivility({ id: 1 });
+    const action = CivilityListViewActions.selectCivility({ id: 1 });
     component.onDelete(1);
     expect(store.dispatch).toHaveBeenCalledWith(action);
   });

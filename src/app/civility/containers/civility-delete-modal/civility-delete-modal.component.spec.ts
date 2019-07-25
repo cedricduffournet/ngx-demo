@@ -10,7 +10,7 @@ import { ValidationActionModule } from '@app/shared/validation-action';
 import { CivilityDeleteComponent } from '@app/civility/components';
 import { CivilityDeleteModalComponent } from '@app/civility/containers';
 import * as fromCivilities from '@app/civility/state/reducers';
-import { DeleteCivilityModalActions } from '@app/civility/state/actions';
+import { CivilityDeleteModalActions } from '@app/civility/state/actions';
 import { Civility } from '@app/civility/models/civility';
 
 describe('DeleteCivilityModalComponent', () => {
@@ -51,7 +51,7 @@ describe('DeleteCivilityModalComponent', () => {
       code: 'code',
       name: 'name'
     } as Civility;
-    const action = DeleteCivilityModalActions.deleteCivility({ civility });
+    const action = CivilityDeleteModalActions.deleteCivility({ civility });
     fixture.detectChanges();
     component.onDelete(civility);
 
