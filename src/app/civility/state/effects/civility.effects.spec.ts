@@ -11,11 +11,11 @@ import { CivilityEffects } from '@app/civility/state/effects';
 import { CivilityService } from '@app/civility/services';
 
 import {
-  AddCivilityModalActions,
-  UpdateCivilityModalActions,
-  ListCivilityViewActions,
+  CivilityAddModalActions,
+  CivilityUpdateModalActions,
+  CivilityListViewActions,
   CivilityApiActions,
-  DeleteCivilityModalActions
+  CivilityDeleteModalActions
 } from '@app/civility/state/actions';
 import { ToasterActions } from '@app/core/state/actions';
 
@@ -86,7 +86,7 @@ describe('CivilityEffects', () => {
 
     function loadCivilitySuccess(
       action:
-        | typeof ListCivilityViewActions.loadCivilities
+        | typeof CivilityListViewActions.loadCivilities
         | typeof RegisterViewActions.loadCivilities
     ) {
       const createAction = action();
@@ -104,7 +104,7 @@ describe('CivilityEffects', () => {
 
     function loadCivilityFailure(
       action:
-        | typeof ListCivilityViewActions.loadCivilities
+        | typeof CivilityListViewActions.loadCivilities
         | typeof RegisterViewActions.loadCivilities
     ) {
       const createAction = action();
@@ -120,8 +120,8 @@ describe('CivilityEffects', () => {
       expect(effects.loadCivilities$).toBeObservable(expected);
     }
 
-    it('should return a loadCivilitySuccess, when ListCivilityViewActions.loadCivilities, with civilities, on success', () => {
-      const action = ListCivilityViewActions.loadCivilities;
+    it('should return a loadCivilitySuccess, when CivilityListViewActions.loadCivilities, with civilities, on success', () => {
+      const action = CivilityListViewActions.loadCivilities;
       loadCivilitySuccess(action);
     });
 
@@ -130,8 +130,8 @@ describe('CivilityEffects', () => {
       loadCivilitySuccess(action);
     });
 
-    it('should return a loadCivilityFailure, when ListCivilityViewActions.loadCivilities on error', () => {
-      const action = ListCivilityViewActions.loadCivilities;
+    it('should return a loadCivilityFailure, when CivilityListViewActions.loadCivilities on error', () => {
+      const action = CivilityListViewActions.loadCivilities;
       loadCivilityFailure(action);
     });
 
@@ -143,7 +143,7 @@ describe('CivilityEffects', () => {
 
   describe('addCivilityModal$', () => {
     it('should open a modal with AddCivilityModalComponent component', (done: any) => {
-      const action = ListCivilityViewActions.showAddCivilityModal();
+      const action = CivilityListViewActions.showAddCivilityModal();
 
       actions$ = of(action);
 
@@ -175,7 +175,7 @@ describe('CivilityEffects', () => {
         result: 1
       };
 
-      const action = AddCivilityModalActions.addCivility({ civility });
+      const action = CivilityAddModalActions.addCivility({ civility });
       const success = CivilityApiActions.addCivilitySuccess({
         civility: civilitySuccess
       });
@@ -189,7 +189,7 @@ describe('CivilityEffects', () => {
     });
 
     it('should return a addCivilityFailure on error', () => {
-      const action = AddCivilityModalActions.addCivility({ civility });
+      const action = CivilityAddModalActions.addCivility({ civility });
       const fail = CivilityApiActions.addCivilityFailure({
         error: 'Error loading'
       });
@@ -236,7 +236,7 @@ describe('CivilityEffects', () => {
 
   describe('updateCivilityModal$', () => {
     it('should open a modal with UpdateCivilityModalComponent component', (done: any) => {
-      const action = ListCivilityViewActions.showUpdateCivilityModal();
+      const action = CivilityListViewActions.showUpdateCivilityModal();
 
       actions$ = of(action);
 
@@ -269,7 +269,7 @@ describe('CivilityEffects', () => {
         result: 1
       };
 
-      const action = UpdateCivilityModalActions.updateCivility({
+      const action = CivilityUpdateModalActions.updateCivility({
         data: { id, civility }
       });
       const success = CivilityApiActions.updateCivilitySuccess({
@@ -285,7 +285,7 @@ describe('CivilityEffects', () => {
     });
 
     it('should return a addCivilityFailure on error', () => {
-      const action = UpdateCivilityModalActions.updateCivility({
+      const action = CivilityUpdateModalActions.updateCivility({
         data: { id, civility }
       });
       const fail = CivilityApiActions.updateCivilityFailure({
@@ -334,7 +334,7 @@ describe('CivilityEffects', () => {
 
   describe('deleteCivilityModal$', () => {
     it('should open a modal with DeleteCivilityModalComponent component', (done: any) => {
-      const action = ListCivilityViewActions.showDeleteCivilityModal();
+      const action = CivilityListViewActions.showDeleteCivilityModal();
 
       actions$ = of(action);
 
@@ -357,7 +357,7 @@ describe('CivilityEffects', () => {
 
     it('should return a deleteCivilitySuccess with delete civility id on success', () => {
       const idSuccess = { id: 1 };
-      const action = DeleteCivilityModalActions.deleteCivility({ civility });
+      const action = CivilityDeleteModalActions.deleteCivility({ civility });
       const success = CivilityApiActions.deleteCivilitySuccess(idSuccess);
 
       actions$ = hot('-a-', { a: action });
@@ -369,7 +369,7 @@ describe('CivilityEffects', () => {
     });
 
     it('should return a deleteCivilityFailure on error', () => {
-      const action = DeleteCivilityModalActions.deleteCivility({ civility });
+      const action = CivilityDeleteModalActions.deleteCivility({ civility });
       const fail = CivilityApiActions.deleteCivilityFailure({
         error: 'Error loading'
       });

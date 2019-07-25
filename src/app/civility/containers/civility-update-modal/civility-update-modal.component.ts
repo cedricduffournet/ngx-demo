@@ -6,7 +6,7 @@ import { Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 import * as fromCivilities from '@app/civility/state/reducers';
-import { UpdateCivilityModalActions } from '@app/civility/state/actions';
+import { CivilityUpdateModalActions } from '@app/civility/state/actions';
 import { Civility } from '@app/civility/models/civility';
 
 @Component({
@@ -49,6 +49,6 @@ export class CivilityUpdateModalComponent implements OnInit, OnDestroy {
   }
 
   onUpdate(data: { id: number; civility: Civility }) {
-    this.store.dispatch(UpdateCivilityModalActions.updateCivility({ data }));
+    this.store.dispatch(CivilityUpdateModalActions.updateCivility({ data }));
   }
 }

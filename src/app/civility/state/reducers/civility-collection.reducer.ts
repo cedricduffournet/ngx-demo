@@ -1,9 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
 
 import {
-  AddCivilityModalActions,
-  DeleteCivilityModalActions,
-  ListCivilityViewActions,
+  CivilityAddModalActions,
+  CivilityDeleteModalActions,
+  CivilityListViewActions,
   CivilityApiActions
 } from '@app/civility/state/actions';
 
@@ -29,7 +29,7 @@ export const INITIAL_STATE: State = {
 
 export const reducer = createReducer(
   INITIAL_STATE,
-  on(ListCivilityViewActions.loadCivilities, state => ({
+  on(CivilityListViewActions.loadCivilities, state => ({
     ...state,
     loading: true,
     loaded: false
@@ -45,7 +45,7 @@ export const reducer = createReducer(
     loading: false,
     loaded: false
   })),
-  on(AddCivilityModalActions.addCivility, state => ({
+  on(CivilityAddModalActions.addCivility, state => ({
     ...state,
     adding: true,
     added: false
@@ -58,14 +58,14 @@ export const reducer = createReducer(
   })),
   on(
     CivilityApiActions.addCivilityFailure,
-    ListCivilityViewActions.showAddCivilityModal,
+    CivilityListViewActions.showAddCivilityModal,
     state => ({
       ...state,
       adding: false,
       added: false
     })
   ),
-  on(DeleteCivilityModalActions.deleteCivility, state => ({
+  on(CivilityDeleteModalActions.deleteCivility, state => ({
     ...state,
     deleting: true,
     deleted: false
@@ -78,7 +78,7 @@ export const reducer = createReducer(
   })),
   on(
     CivilityApiActions.deleteCivilityFailure,
-    ListCivilityViewActions.showDeleteCivilityModal,
+    CivilityListViewActions.showDeleteCivilityModal,
     state => ({
       ...state,
       deleting: false,

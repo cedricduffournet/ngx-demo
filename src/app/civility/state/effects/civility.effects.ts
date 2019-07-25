@@ -15,10 +15,10 @@ import { Observable, of } from 'rxjs';
 import { RegisterViewActions } from '@app/authentication/state/actions';
 import {
   CivilityApiActions,
-  ListCivilityViewActions,
-  UpdateCivilityModalActions,
-  AddCivilityModalActions,
-  DeleteCivilityModalActions
+  CivilityListViewActions,
+  CivilityUpdateModalActions,
+  CivilityAddModalActions,
+  CivilityDeleteModalActions
 } from '@app/civility/state/actions';
 
 import { ToasterActions } from '@app/core/state/actions';
@@ -37,7 +37,7 @@ export class CivilityEffects {
   loadCivilities$ = createEffect(() =>
     this.actions$.pipe(
       ofType(
-        ListCivilityViewActions.loadCivilities,
+        CivilityListViewActions.loadCivilities,
         RegisterViewActions.loadCivilities
       ),
       switchMap(() => {
@@ -60,7 +60,7 @@ export class CivilityEffects {
   addCivilityModal$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(ListCivilityViewActions.showAddCivilityModal),
+        ofType(CivilityListViewActions.showAddCivilityModal),
         tap(() => {
           this.modalService.show(CivilityAddModalComponent, CRUD_MODAL_CONFIG);
         })
@@ -70,7 +70,7 @@ export class CivilityEffects {
 
   addCivility$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(AddCivilityModalActions.addCivility),
+      ofType(CivilityAddModalActions.addCivility),
       map(action => action.civility),
       mergeMap(civility =>
         this.service.addCivility(civility).pipe(
@@ -88,7 +88,7 @@ export class CivilityEffects {
   updateCivilityModal$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(ListCivilityViewActions.showUpdateCivilityModal),
+        ofType(CivilityListViewActions.showUpdateCivilityModal),
         tap(() => {
           this.modalService.show(
             CivilityUpdateModalComponent,
@@ -101,7 +101,7 @@ export class CivilityEffects {
 
   updateCivility$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(UpdateCivilityModalActions.updateCivility),
+      ofType(CivilityUpdateModalActions.updateCivility),
       map(action => action.data),
       mergeMap(data =>
         this.service.updateCivility(data).pipe(
@@ -123,7 +123,7 @@ export class CivilityEffects {
   deleteCivilityModal$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(ListCivilityViewActions.showDeleteCivilityModal),
+        ofType(CivilityListViewActions.showDeleteCivilityModal),
         tap(() => {
           this.modalService.show(
             CivilityDeleteModalComponent,
@@ -136,7 +136,7 @@ export class CivilityEffects {
 
   deleteCivility$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
-      ofType(DeleteCivilityModalActions.deleteCivility),
+      ofType(CivilityDeleteModalActions.deleteCivility),
       map(action => action.civility),
       mergeMap(civility =>
         this.service.deleteCivility(civility).pipe(

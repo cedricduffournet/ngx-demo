@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Civility } from '@app/civility/models/civility';
 import { User } from '@app/user/models/User';
 import { Authorization } from '@app/core/models/authorization.model';
-import { ListCivilityViewActions } from '@app/civility/state/actions';
+import { CivilityListViewActions } from '@app/civility/state/actions';
 import * as fromAuth from '@app/authentication/state/reducers';
 import * as fromCivilities from '@app/civility/state/reducers';
 
@@ -29,20 +29,20 @@ export class CivilityListViewComponent implements OnInit {
     this.authorization$ = this.store.pipe(
       select(fromCivilities.getCivilityAuthorization)
     );
-    this.store.dispatch(ListCivilityViewActions.loadCivilities());
+    this.store.dispatch(CivilityListViewActions.loadCivilities());
   }
 
   onAdd() {
-    this.store.dispatch(ListCivilityViewActions.showAddCivilityModal());
+    this.store.dispatch(CivilityListViewActions.showAddCivilityModal());
   }
 
   onUpdate(id: number) {
-    this.store.dispatch(ListCivilityViewActions.selectCivility({ id }));
-    this.store.dispatch(ListCivilityViewActions.showUpdateCivilityModal());
+    this.store.dispatch(CivilityListViewActions.selectCivility({ id }));
+    this.store.dispatch(CivilityListViewActions.showUpdateCivilityModal());
   }
 
   onDelete(id: number): void {
-    this.store.dispatch(ListCivilityViewActions.selectCivility({ id }));
-    this.store.dispatch(ListCivilityViewActions.showDeleteCivilityModal());
+    this.store.dispatch(CivilityListViewActions.selectCivility({ id }));
+    this.store.dispatch(CivilityListViewActions.showDeleteCivilityModal());
   }
 }

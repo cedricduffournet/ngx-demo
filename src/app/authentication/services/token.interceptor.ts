@@ -17,10 +17,7 @@ import { catchError, take, switchMap, finalize, filter } from 'rxjs/operators';
 
 import { AuthService } from '@app/authentication/services/auth.service';
 import * as fromAuth from '@app/authentication/state/reducers';
-import {
-  AuthActions,
-  AuthApiActions
-} from '@app/authentication/state/actions';
+import { AuthActions, AuthApiActions } from '@app/authentication/state/actions';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
