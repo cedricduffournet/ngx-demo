@@ -20,7 +20,7 @@ import * as fromCivilities from '@app/civility/state/reducers';
 import { CivilityUpdateModalActions } from '@app/civility/state/actions';
 import { Civility } from '@app/civility/models/civility';
 
-describe('DeleteCivilityModalComponent', () => {
+describe('UpdateCivilityModalComponent', () => {
   let fixture: ComponentFixture<CivilityUpdateModalComponent>;
   let component: CivilityUpdateModalComponent;
   let store: MockStore<fromCivilities.State>;
