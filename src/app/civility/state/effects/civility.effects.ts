@@ -23,7 +23,7 @@ import {
 
 import { ToasterActions } from '@app/core/state/actions';
 
-import { CivilityService } from '@app/civility/services/civility.service';
+import { CivilityService } from '@app/civility/services';
 import { CRUD_MODAL_CONFIG } from '@app/shared/models/modal-config';
 
 @Injectable()
