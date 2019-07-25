@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DeleteCivilityModalComponent should be created 1`] = `
+exports[`UpdateCivilityModalComponent should be created 1`] = `
 <app-civility-update-modal
   bsModalRef={[Function BsModalRef]}
   selectedCivility$={[Function Store]}
