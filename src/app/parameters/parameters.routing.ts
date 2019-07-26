@@ -15,7 +15,11 @@ export const routes: Routes = [
     component: ParameterCivilityComponent,
     canActivate: [AuthGuard],
     data: {
-      roles: ['ROLE_CIVILITY_VIEW'],
+      roles: [
+        'ROLE_CIVILITY_DELETE',
+        'ROLE_CIVILITY_EDIT',
+        'ROLE_CIVILITY_DELETE'
+      ],
       title: 'CIVILITIES',
       previousLink: ['parameters']
     }

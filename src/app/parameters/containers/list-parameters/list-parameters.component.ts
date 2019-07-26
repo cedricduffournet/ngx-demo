@@ -16,7 +16,13 @@ export class ListParametersComponent implements OnInit {
 
   ngOnInit() {
     this.canViewCivility$ = this.store.pipe(
-      select(fromAuth.getAuthorized(['ROLE_CIVILITY_DELETE']))
+      select(
+        fromAuth.getAuthorized([
+          'ROLE_CIVILITY_DELETE',
+          'ROLE_CIVILITY_EDIT',
+          'ROLE_CIVILITY_DELETE'
+        ])
+      )
     );
   }
 }
