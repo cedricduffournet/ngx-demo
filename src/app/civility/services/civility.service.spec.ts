@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { cold } from 'jasmine-marbles';
 import { normalize } from 'normalizr';
 
-import { CivilityService } from '@app/civility/services/civility.service';
+import { CivilityService } from '@app/civility/services';
 import { civilitySchema, Civility } from '@app/civility/models/civility';
 import { HttpService } from '@app/core/services/http.service';
 
