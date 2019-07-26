@@ -1,7 +1,4 @@
-import { props, createAction, union } from '@ngrx/store';
-
-import { Civility } from '@app/civility/models/civility';
-import { NormalizedData } from '@app/shared/models/normalized.model';
+import { props, createAction } from '@ngrx/store';
 
 export const loadCivilities = createAction('[Civility/View] Load civilities');
 
