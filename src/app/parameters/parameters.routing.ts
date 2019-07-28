@@ -16,7 +16,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       roles: [
-        'ROLE_CIVILITY_DELETE',
+        'ROLE_CIVILITY_CREATE',
         'ROLE_CIVILITY_EDIT',
         'ROLE_CIVILITY_DELETE'
       ],
