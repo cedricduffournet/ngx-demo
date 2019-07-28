@@ -18,7 +18,7 @@ export class ListParametersComponent implements OnInit {
     this.canViewCivility$ = this.store.pipe(
       select(
         fromAuth.getAuthorized([
-          'ROLE_CIVILITY_DELETE',
+          'ROLE_CIVILITY_CREATE',
           'ROLE_CIVILITY_EDIT',
           'ROLE_CIVILITY_DELETE'
         ])
