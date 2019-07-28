@@ -43,7 +43,7 @@ To
 ```typescript
 export const environment = {
   ...
-  apiHost: 'http://symfony-api-rest.cedricduffournet.com',
+  apiHost: 'https://symfony-api-rest.cedricduffournet.com',
   ...
 };
 ```
