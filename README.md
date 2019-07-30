@@ -6,7 +6,7 @@
 
 This project is using [Angular CLI](https://github.com/angular/angular-cli).
 
-I'm using this repository as a starter kit to create Web App based on angular. Hope it can help you to learn more about Angular 8+ concepts.
+Angular 8+ demo project based created with my [angular starter](https://github.com/cedricduffournet/angular-starter).
 
 ## Getting started
 
@@ -26,7 +26,7 @@ yarn start
 
 use login : `superadmin@dev.com` / pwd : `superadminpwd` to connect
 
-The application's backend is available on <https://github.com/cedricduffournet/symfony-api-rest-starter>. If you don't want to install backend locally, use the demo api for development environment by changing apiHost in `environment.ts`:
+The application's backend is available on <https://github.com/cedricduffournet/symfony-api-demo>. If you don't want to install backend locally, use the demo api for development environment by changing apiHost in `environment.ts`:
 
 Change
 
@@ -43,7 +43,7 @@ To
 ```typescript
 export const environment = {
   ...
-  apiHost: 'https://symfony-api-rest.cedricduffournet.com',
+  apiHost: 'https://symfony-api-demo.cedricduffournet.com',
   ...
 };
 ```
