@@ -7,4 +7,5 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 })
 export class ReferencedTableMenuComponent {
   @Input() canViewCivility = false;
+  @Input() canViewProductCategory = false;
 }

@@ -1,0 +1,138 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductCategoryEntitiesReducer ADD_SUCCESS should add a new productCategory id 3 1`] = `
+Object {
+  "entities": Object {
+    "1": Object {
+      "id": 1,
+      "name": "Name 1",
+    },
+    "2": Object {
+      "id": 2,
+      "name": "Name 2",
+    },
+    "3": Object {
+      "name": "Name 3",
+    },
+  },
+  "selectedId": null,
+  "updated": false,
+  "updating": false,
+}
+`;
+
+exports[`ProductCategoryEntitiesReducer LOAD_SUCCESS should return state with productCategory entities 1`] = `
+Object {
+  "entities": Object {
+    "1": Object {
+      "name": "Name1",
+    },
+    "2": Object {
+      "name": "Name2",
+    },
+  },
+  "selectedId": null,
+  "updated": false,
+  "updating": false,
+}
+`;
+
+exports[`ProductCategoryEntitiesReducer SELECT should set selected productCategory (id 1) 1`] = `
+Object {
+  "entities": Object {
+    "1": Object {
+      "id": 1,
+      "name": "Name 1",
+    },
+    "2": Object {
+      "id": 2,
+      "name": "Name 2",
+    },
+  },
+  "selectedId": 1,
+  "updated": false,
+  "updating": false,
+}
+`;
+
+exports[`ProductCategoryEntitiesReducer Selectors getEntities should return entities 1`] = `
+Object {
+  "1": Object {
+    "id": 1,
+    "name": "Name 1",
+  },
+  "2": Object {
+    "id": 2,
+    "name": "Name 2",
+  },
+}
+`;
+
+exports[`ProductCategoryEntitiesReducer Selectors getSelectedId should return selected id (1) 1`] = `1`;
+
+exports[`ProductCategoryEntitiesReducer Selectors getUpdated should return updated true 1`] = `true`;
+
+exports[`ProductCategoryEntitiesReducer Selectors getUpdating should return updating true 1`] = `true`;
+
+exports[`ProductCategoryEntitiesReducer UPDATE should set updating to true 1`] = `
+Object {
+  "entities": Object {},
+  "selectedId": null,
+  "updated": false,
+  "updating": true,
+}
+`;
+
+exports[`ProductCategoryEntitiesReducer UPDATE_FAILURE & SHOW_MODAL_UPDATE should set updating to false 1`] = `
+Object {
+  "entities": Object {
+    "1": Object {
+      "id": 1,
+      "name": "Name",
+    },
+  },
+  "selectedId": null,
+  "updated": false,
+  "updating": false,
+}
+`;
+
+exports[`ProductCategoryEntitiesReducer UPDATE_FAILURE & SHOW_MODAL_UPDATE should set updating to false, updated to false when show modal 1`] = `
+Object {
+  "entities": Object {
+    "1": Object {
+      "id": 1,
+      "name": "Name",
+    },
+  },
+  "selectedId": null,
+  "updated": false,
+  "updating": false,
+}
+`;
+
+exports[`ProductCategoryEntitiesReducer UPDATE_SUCCESS should update productCategory id 1, upated should be true and updating false 1`] = `
+Object {
+  "entities": Object {
+    "1": Object {
+      "name": "Name 1 updated",
+    },
+    "2": Object {
+      "id": 2,
+      "name": "Name 2",
+    },
+  },
+  "selectedId": null,
+  "updated": true,
+  "updating": false,
+}
+`;
+
+exports[`ProductCategoryEntitiesReducer undefined action should return the default state 1`] = `
+Object {
+  "entities": Object {},
+  "selectedId": null,
+  "updated": false,
+  "updating": false,
+}
+`;

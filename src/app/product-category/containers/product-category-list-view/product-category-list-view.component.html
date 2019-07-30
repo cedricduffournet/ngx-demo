@@ -1,0 +1,11 @@
+<app-page-inner>
+  <div class="page-section">
+    <app-product-category-items
+      [productCategories]="productCategories$ | async"
+      (delete)="onDelete($event)"
+      (update)="onUpdate($event)"
+      (add)="onAdd()"
+      [authorization]="authorization$ | async"
+    ></app-product-category-items>
+  </div>
+</app-page-inner>

@@ -1,0 +1,7 @@
+<app-modal-wrapper title="{{ 'ADD_PRODUCT_CATEGORY_TITLE' | translate }}">
+  <app-product-category-add
+    (cancel)="onCancel()"
+    (add)="onAdd($event)"
+    [adding]="adding$ | async"
+  ></app-product-category-add>
+</app-modal-wrapper>

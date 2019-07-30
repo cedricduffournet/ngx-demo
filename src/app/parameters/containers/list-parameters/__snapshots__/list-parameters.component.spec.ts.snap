@@ -3,6 +3,7 @@
 exports[`ParameterCivilityComponent should be created 1`] = `
 <app-list-parameters
   canViewCivility$={[Function Store]}
+  canViewProductCategory$={[Function Store]}
   store={[Function MockStore]}
 >
   <app-page-inner>
@@ -16,6 +17,28 @@ exports[`ParameterCivilityComponent should be created 1`] = `
           class="row"
         >
           
+          <div
+            class="col-md-6"
+          >
+            <app-referenced-table-menu>
+              <div
+                class="card"
+              >
+                <div
+                  class="card-header"
+                  translate=""
+                >
+                   REFERENCED_TABLE 
+                </div>
+                <ul
+                  class="list-group list-group-flush"
+                >
+                  
+                  
+                </ul>
+              </div>
+            </app-referenced-table-menu>
+          </div>
         </div>
       </div>
     </div>
