@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ParameterCivilityComponent should be created 1`] = `
+<app-parameter-product-category>
+  <app-product-category-list-view />
+</app-parameter-product-category>
+`;

@@ -3,6 +3,7 @@
 exports[`ParameterCivilityComponent should be created 1`] = `
 <app-referenced-table-menu
   canViewCivility="false"
+  canViewProductCategory="false"
 >
   <div
     class="card"
@@ -16,19 +17,17 @@ exports[`ParameterCivilityComponent should be created 1`] = `
     <ul
       class="list-group list-group-flush"
     >
-      <li
-        class="list-group-item"
-      >
-        
-      </li>
+      
+      
     </ul>
-  </div><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  </div>
 </app-referenced-table-menu>
 `;
 
 exports[`ParameterCivilityComponent should display civility menu 1`] = `
 <app-referenced-table-menu
   canViewCivility={[Function Boolean]}
+  canViewProductCategory="false"
 >
   <div
     class="card"
@@ -42,10 +41,10 @@ exports[`ParameterCivilityComponent should display civility menu 1`] = `
     <ul
       class="list-group list-group-flush"
     >
+      
       <li
         class="list-group-item"
       >
-        
         <a
           href="/civilities"
           ng-reflect-router-link="civilities"
@@ -54,7 +53,8 @@ exports[`ParameterCivilityComponent should display civility menu 1`] = `
            CIVILITIES 
         </a>
       </li>
+      
     </ul>
-  </div><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  </div>
 </app-referenced-table-menu>
 `;

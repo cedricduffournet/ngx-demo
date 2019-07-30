@@ -1,9 +1,16 @@
 <app-page-inner>
   <div class="page-section">
     <div class="row">
-      <div class="col-md-6" *ngIf="canViewCivility$ | async">
+      <div
+        class="col-md-6"
+        *ngIf="{
+          canViewCivility: canViewCivility$ | async,
+          canViewProductCategory: canViewProductCategory$ | async
+        } as role"
+      >
         <app-referenced-table-menu
-          [canViewCivility]="canViewCivility$ | async"
+          [canViewCivility]="role.canViewCivility"
+          [canViewProductCategory]="role.canViewProductCategory"
         ></app-referenced-table-menu>
       </div>
     </div>

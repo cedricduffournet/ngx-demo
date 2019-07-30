@@ -62,5 +62,15 @@
   "CIVILITY_UPDATE_SUCCESS": "Civility successfully changed",
   "CIVILITY_DELETE_SUCCESS": "Civility deleted successfully",
   "CIVILITY_DELETE": "this civility?",
-  "ABBREVIATION": "Abbreviation"
+  "ABBREVIATION": "Abbreviation",
+
+  "PRODUCT_CATEGORIES": "Product categories",
+  "PRODUCT_CATEGORY": "Product category",
+  "ADD_PRODUCT_CATEGORY": "Add a category product",
+  "ADD_PRODUCT_CATEGORY_TITLE": "Add category product",
+  "EDIT_PRODUCT_CATEGORY_TITLE": "Category product modification",
+  "PRODUCT_CATEGORY_ADD_SUCCESS": "Category product added successfully",
+  "PRODUCT_CATEGORY_UPDATE_SUCCESS": "Category product successfully changed",
+  "PRODUCT_CATEGORY_DELETE_SUCCESS": "Category product deleted successfully",
+  "PRODUCT_CATEGORY_DELETE": "this category product?"
 }

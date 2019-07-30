@@ -1,0 +1,8 @@
+<app-modal-wrapper title="{{ 'EDIT_PRODUCT_CATEGORY_TITLE' | translate }}">
+  <app-product-category-update
+    [productCategory]="selectedProductCategory$ | async"
+    (cancel)="onCancel()"
+    (update)="onUpdate($event)"
+    [updating]="updating$ | async"
+  ></app-product-category-update>
+</app-modal-wrapper>
