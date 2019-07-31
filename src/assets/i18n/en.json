@@ -72,5 +72,15 @@
   "PRODUCT_CATEGORY_ADD_SUCCESS": "Category product added successfully",
   "PRODUCT_CATEGORY_UPDATE_SUCCESS": "Category product successfully changed",
   "PRODUCT_CATEGORY_DELETE_SUCCESS": "Category product deleted successfully",
-  "PRODUCT_CATEGORY_DELETE": "this category product?"
+  "PRODUCT_CATEGORY_DELETE": "this category product?",
+
+  "PRODUCTS": "Products",
+  "PRODUCT": "Product",
+  "ADD_PRODUCT": "add a product",
+  "ADD_PRODUCT_TITLE": "Add produit",
+  "EDIT_PRODUCT_TITLE": "Produit modification",
+  "PRODUCT_ADD_SUCCESS": "Product added successfully",
+  "PRODUCT_UPDATE_SUCCESS": "Product successfully changed",
+  "PRODUCT_DELETE_SUCCESS": "Product deleted successfully",
+  "PRODUCT_DELETE": "this product?"
 }

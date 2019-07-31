@@ -2,6 +2,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListParametersComponent } from '@app/parameters/containers';
 import { ParameterCivilityComponent } from '@app/parameters/civility';
 import { ParameterProductCategoryComponent } from '@app/parameters/product-category';
+import { ParameterProductComponent } from '@app/parameters/product';
 import { AuthGuard } from '@app/authentication/services';
 
 export const routes: Routes = [
@@ -36,6 +37,20 @@ export const routes: Routes = [
         'ROLE_PRODUCT_CATEGORY_DELETE'
       ],
       title: 'PRODUCT_CATEGORIES',
+      previousLink: ['parameters']
+    }
+  },
+  {
+    path: 'products',
+    component: ParameterProductComponent,
+    canActivate: [AuthGuard],
+    data: {
+      roles: [
+        'ROLE_PRODUCT_CREATE',
+        'ROLE_PRODUCT_EDIT',
+        'ROLE_PRODUCT_DELETE'
+      ],
+      title: 'PRODUCTS',
       previousLink: ['parameters']
     }
   }

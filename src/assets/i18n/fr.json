@@ -74,5 +74,16 @@
   "PRODUCT_CATEGORY_ADD_SUCCESS": "Catégorie produit ajoutée avec succès",
   "PRODUCT_CATEGORY_UPDATE_SUCCESS": "Catégorie produit modifiée avec succès",
   "PRODUCT_CATEGORY_DELETE_SUCCESS": "Catégorie produit supprimée avec succès",
-  "PRODUCT_CATEGORY_DELETE": "cette catégorie produit ?"
+  "PRODUCT_CATEGORY_DELETE": "cette catégorie produit ?",
+
+  "PRODUCTS": "Produits",
+  "PRODUCT": "Produit",
+  "ADD_PRODUCT": "Ajouter un produit",
+  "ADD_PRODUCT_TITLE": "Ajout produit",
+  "EDIT_PRODUCT_TITLE": "Modification produit",
+  "PRODUCT_PROCESS_UPDATE": "Mise à jour produit en cours ...",
+  "PRODUCT_ADD_SUCCESS": "Produit ajouté avec succès",
+  "PRODUCT_UPDATE_SUCCESS": "Produit modifié avec succès",
+  "PRODUCT_DELETE_SUCCESS": "Produit supprimé avec succès",
+  "PRODUCT_DELETE": "ce produit ?"
 }

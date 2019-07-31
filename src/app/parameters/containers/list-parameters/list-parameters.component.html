@@ -5,12 +5,14 @@
         class="col-md-6"
         *ngIf="{
           canViewCivility: canViewCivility$ | async,
-          canViewProductCategory: canViewProductCategory$ | async
+          canViewProductCategory: canViewProductCategory$ | async,
+          canViewProduct: canViewProduct$ | async
         } as role"
       >
         <app-referenced-table-menu
           [canViewCivility]="role.canViewCivility"
           [canViewProductCategory]="role.canViewProductCategory"
+          [canViewProduct]="role.canViewProduct"
         ></app-referenced-table-menu>
       </div>
     </div>

@@ -12,6 +12,7 @@ import * as fromAuth from '@app/authentication/state/reducers';
 export class ListParametersComponent implements OnInit {
   canViewCivility$: Observable<boolean>;
   canViewProductCategory$: Observable<boolean>;
+  canViewProduct$: Observable<boolean>;
 
   public constructor(private store: Store<fromAuth.State>) {}
 
@@ -31,6 +32,15 @@ export class ListParametersComponent implements OnInit {
           'ROLE_PRODUCT_CATEGORY_CREATE',
           'ROLE_PRODUCT_CATEGORY_EDIT',
           'ROLE_PRODUCT_CATEGORY_DELETE'
+        ])
+      )
+    );
+    this.canViewProduct$ = this.store.pipe(
+      select(
+        fromAuth.getAuthorized([
+          'ROLE_PRODUCT_CREATE',
+          'ROLE_PRODUCT_EDIT',
+          'ROLE_PRODUCT_DELETE'
         ])
       )
     );
