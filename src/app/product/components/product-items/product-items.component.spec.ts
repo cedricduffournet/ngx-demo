@@ -17,11 +17,11 @@ describe('ProductItems', () => {
     {
       id: 1,
       name: 'testname1'
-    },
+    } as Product,
     {
       id: 2,
       name: 'testname2'
-    }
+    } as Product
   ];
 
   beforeEach(() => {

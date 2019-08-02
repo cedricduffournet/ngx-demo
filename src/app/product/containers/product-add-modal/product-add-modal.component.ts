@@ -1,13 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { Store, select } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
-import * as fromProducts from '@app/product/state/reducers';
-import { ProductAddModalActions } from '@app/product/state/actions';
 import { Product } from '@app/product/models/product';
+import { ProductFacade } from '@app/product/state/product.facade';
 
 @Component({
   selector: 'app-product-add-modal',
@@ -17,20 +15,15 @@ export class ProductAddModalComponent implements OnInit, OnDestroy {
   added$: Observable<boolean>;
   adding$: Observable<boolean>;
   subscription: Subscription;
-  selectedProduct$: Observable<Product>;
 
   constructor(
     public bsModalRef: BsModalRef,
-    private store: Store<fromProducts.State>
+    private facade: ProductFacade
   ) {}
 
   ngOnInit() {
-    this.added$ = this.store.pipe(
-      select(fromProducts.getProductCollectionAdded)
-    );
-    this.adding$ = this.store.pipe(
-      select(fromProducts.getProductCollectionAdding)
-    );
+    this.added$ = this.facade.added$;
+    this.adding$ = this.facade.adding$;
 
     this.subscription = this.added$
       .pipe(filter(added => added))
@@ -46,6 +39,6 @@ export class ProductAddModalComponent implements OnInit, OnDestroy {
   }
 
   onAdd(product: Product) {
-    this.store.dispatch(ProductAddModalActions.addProduct({ product }));
+    this.facade.addProduct(product);
   }
 }

@@ -1,13 +1,9 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { Product } from '@app/product/models/product';
-import { User } from '@app/user/models/User';
-import { Authorization } from '@app/core/models/authorization.model';
-import { ProductListViewActions } from '@app/product/state/actions';
-import * as fromAuth from '@app/authentication/state/reducers';
-import * as fromProducts from '@app/product/state/reducers';
+import { ProductFacade } from '@app/product/state/product.facade';
+import { AuthFacade } from '@app/authentication/state/auth.facade';
 
 @Component({
   selector: 'app-product-list-view',
@@ -16,33 +12,42 @@ import * as fromProducts from '@app/product/state/reducers';
 })
 export class ProductListViewComponent implements OnInit {
   products$: Observable<Product[]>;
-  loggedUser$: Observable<User | null>;
-  authorization$: Observable<Authorization>;
+  canUpdate$: Observable<boolean>;
+  canDelete$: Observable<boolean>;
+  canCreate$: Observable<boolean>;
+  config$: Observable<any>;
+  totalItems$: Observable<number>;
 
   public constructor(
-    private store: Store<fromProducts.State & fromAuth.State>
+    private facade: ProductFacade,
+    private authFacade: AuthFacade
   ) {}
 
   public ngOnInit() {
-    this.products$ = this.store.pipe(select(fromProducts.getProducts));
-    this.loggedUser$ = this.store.pipe(select(fromAuth.getLoggedUser));
-    this.authorization$ = this.store.pipe(
-      select(fromProducts.getProductAuthorization)
-    );
-    this.store.dispatch(ProductListViewActions.loadProducts());
+    this.products$ = this.facade.products$;
+    this.canCreate$ = this.authFacade.isAuthorized(['ROLE_PRODUCT_CREATE']);
+    this.canDelete$ = this.authFacade.isAuthorized(['ROLE_PRODUCT_DELETE']);
+    this.canUpdate$ = this.authFacade.isAuthorized(['ROLE_PRODUCT_EDIT']);
+    this.config$ = this.facade.config$;
+    this.totalItems$ = this.facade.totalItems$;
+    this.facade.loadProducts();
   }
 
   onAdd() {
-    this.store.dispatch(ProductListViewActions.showAddProductModal());
+    this.facade.showAddProductModal();
   }
 
   onUpdate(id: number) {
-    this.store.dispatch(ProductListViewActions.selectProduct({ id }));
-    this.store.dispatch(ProductListViewActions.showUpdateProductModal());
+    this.facade.selectProduct(id);
+    this.facade.showUpdateProductModal();
   }
 
   onDelete(id: number): void {
-    this.store.dispatch(ProductListViewActions.selectProduct({ id }));
-    this.store.dispatch(ProductListViewActions.showDeleteProductModal());
+    this.facade.selectProduct(id);
+    this.facade.showDeleteProductModal();
+  }
+
+  onPageChanged(page: number) {
+    this.facade.changePage(page);
   }
 }

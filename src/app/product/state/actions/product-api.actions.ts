@@ -4,7 +4,7 @@ import { NormalizedData } from '@app/shared/models/normalized.model';
 
 export const loadProductSuccess = createAction(
   '[Product API] Load SUCCESS',
-  props<{ products: NormalizedData }>()
+  props<{ products: NormalizedData, meta: any  }>()
 );
 
 export const loadProductFailure = createAction(

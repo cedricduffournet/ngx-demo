@@ -6,6 +6,7 @@ import { StoreModule } from '@ngrx/store';
 
 import { SharedModule } from '@app/shared/shared.module';
 import { ProductCategoryEffects } from '@app/product-category/state/effects';
+import { ProductCategoryFacade } from '@app/product-category/state/product-category.facade';
 import {
   ProductCategoryAddComponent,
   ProductCategoryUpdateComponent,
@@ -47,7 +48,8 @@ import { CoalescingComponentFactoryResolver } from '@app/coalescing-component-fa
     ProductCategoryAddModalComponent,
     ProductCategoryDeleteModalComponent
   ],
-  exports: [ProductCategoryListViewComponent]
+  exports: [ProductCategoryListViewComponent],
+  providers: [ProductCategoryFacade]
 })
 export class ProductCategoryModule {
   // see https://github.com/angular/angular/issues/14324

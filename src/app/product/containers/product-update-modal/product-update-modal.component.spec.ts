@@ -1,31 +1,27 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { of } from 'rxjs';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { Store, MemoizedSelector } from '@ngrx/store';
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { FormModule } from '@app/shared/form';
 import { ValidationActionModule } from '@app/shared/validation-action';
 import { ModalWrapperModule } from '@app/shared/modal';
+import { ProductFacade } from '@app/product/state/product.facade';
 
 import {
   ProductUpdateComponent,
   ProductFormComponent
 } from '@app/product/components';
 import { ProductUpdateModalComponent } from '@app/product/containers';
-import * as fromCivilities from '@app/product/state/reducers';
-
-import { ProductUpdateModalActions } from '@app/product/state/actions';
 import { Product } from '@app/product/models/product';
 
 describe('UpdateProductModalComponent', () => {
   let fixture: ComponentFixture<ProductUpdateModalComponent>;
   let component: ProductUpdateModalComponent;
-  let store: MockStore<fromCivilities.State>;
-  let updated: MemoizedSelector<fromCivilities.State, boolean>;
-  let product: MemoizedSelector<fromCivilities.State, Product>;
+  let facade: ProductFacade;
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -40,21 +36,25 @@ describe('UpdateProductModalComponent', () => {
         ModalWrapperModule,
         ReactiveFormsModule
       ],
-      providers: [provideMockStore(), BsModalRef]
+      providers: [
+        provideMockStore(),
+        BsModalRef,
+        {
+          provide: ProductFacade,
+          useValue: {
+            selected$: of({
+              name: 'TestName'
+            }),
+            updated$: of(false),
+            updateProduct: jest.fn()
+          }
+        }
+      ]
     });
 
     fixture = TestBed.createComponent(ProductUpdateModalComponent);
     component = fixture.componentInstance;
-    store = TestBed.get(Store);
-    updated = store.overrideSelector(
-      fromCivilities.getProductEntitiesUpdated,
-      false
-    );
-    product = store.overrideSelector(fromCivilities.getSelectedProduct, {
-      id: 1,
-      name: 'name'
-    });
-    spyOn(store, 'dispatch');
+    facade = TestBed.get(ProductFacade);
   });
 
   it('should be created', () => {
@@ -63,31 +63,37 @@ describe('UpdateProductModalComponent', () => {
     expect(fixture).toMatchSnapshot();
   });
 
-  it('should dispatch a deleteProduct event on submit', () => {
+  it('should call updateProduct event on submit', () => {
+    spyOn(facade, 'updateProduct');
     const data = {
       id: 1,
       product: {
         name: 'name'
       } as Product
     };
-    const action = ProductUpdateModalActions.updateProduct({ data });
     fixture.detectChanges();
     component.onUpdate(data);
-
-    expect(store.dispatch).toHaveBeenCalledWith(action);
+    expect(facade.updateProduct).toHaveBeenCalledWith(data);
   });
 
-  it('should close modal after product added', () => {
+  it('should close if product updated', () => {
     spyOn(component.bsModalRef, 'hide');
+    facade.updated$ = of(true);
     fixture.detectChanges();
-    updated.setResult(true);
-    store.setState({} as any);
     expect(component.bsModalRef.hide).toHaveBeenCalled();
   });
 
   it('should close modal on cancel', () => {
     spyOn(component.bsModalRef, 'hide');
+    fixture.detectChanges();
     component.onCancel();
     expect(component.bsModalRef.hide).toHaveBeenCalled();
+  });
+
+  it('should unsubscribe subscription when destroyed', () => {
+    fixture.detectChanges();
+    spyOn(component.subscription, 'unsubscribe');
+    component.ngOnDestroy();
+    expect(component.subscription.unsubscribe).toHaveBeenCalled();
   });
 });

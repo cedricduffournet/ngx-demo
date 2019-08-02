@@ -1,7 +1,6 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 
-import { Store } from '@ngrx/store';
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 import { TranslateModule } from '@ngx-translate/core';
 
 import {
@@ -9,14 +8,14 @@ import {
   ProductItemsComponent
 } from '@app/product/components';
 import { ProductListViewComponent } from '@app/product/containers';
-import * as fromProducts from '@app/product/state/reducers';
-import { ProductListViewActions } from '@app/product/state/actions';
 import { SharedModule } from '@app/shared/shared.module';
+import { ProductFacade } from '@app/product/state/product.facade';
+import { AuthFacade } from '@app/authentication/state/auth.facade';
 
 describe('ProductListViewComponent', () => {
   let fixture: ComponentFixture<ProductListViewComponent>;
   let component: ProductListViewComponent;
-  let store: MockStore<fromProducts.State>;
+  let facade: ProductFacade;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -27,29 +26,15 @@ describe('ProductListViewComponent', () => {
       ],
       imports: [SharedModule, TranslateModule.forRoot()],
       providers: [
-        provideMockStore({
-          selectors: [
-            {
-              selector: fromProducts.getProducts,
-              value: []
-            },
-            {
-              selector: fromProducts.getProductAuthorization,
-              value: {
-                create: true,
-                delete: true,
-                update: true
-              }
-            }
-          ]
-        })
+        provideMockStore(),
+        ProductFacade,
+        AuthFacade
       ]
     });
 
     fixture = TestBed.createComponent(ProductListViewComponent);
     component = fixture.componentInstance;
-    store = TestBed.get(Store);
-    spyOn(store, 'dispatch');
+    facade = TestBed.get(ProductFacade);
   });
 
   it('should be created', () => {
@@ -58,39 +43,45 @@ describe('ProductListViewComponent', () => {
     expect(fixture).toMatchSnapshot();
   });
 
-  it('should dispatch loadProducts on init', () => {
-    const action = ProductListViewActions.loadProducts();
+  it('should loadProduct on init', () => {
+    spyOn(facade, 'loadProducts');
     fixture.detectChanges();
-    expect(store.dispatch).toHaveBeenCalledWith(action);
+    expect(facade.loadProducts).toHaveBeenCalledWith();
   });
 
-  it('should dispatch showAddProductModal on add event', () => {
-    const action = ProductListViewActions.showAddProductModal();
+  it('should call showAddProductModal on add event', () => {
+    spyOn(facade, 'showAddProductModal');
     component.onAdd();
-    expect(store.dispatch).toHaveBeenCalledWith(action);
+    expect(facade.showAddProductModal).toHaveBeenCalledWith();
   });
 
-  it('should dispatch showUpdateProductModal on update event', () => {
-    const action = ProductListViewActions.showUpdateProductModal();
+  it('should call showUpdateProductModal on update event', () => {
+    spyOn(facade, 'showUpdateProductModal');
     component.onUpdate(1);
-    expect(store.dispatch).toHaveBeenCalledWith(action);
+    expect(facade.showUpdateProductModal).toHaveBeenCalledWith();
   });
 
-  it('should dispatch selectProduct on update event', () => {
-    const action = ProductListViewActions.selectProduct({ id: 1 });
+  it('should call selectProduct on update event', () => {
+    spyOn(facade, 'selectProduct');
     component.onUpdate(1);
-    expect(store.dispatch).toHaveBeenCalledWith(action);
+    expect(facade.selectProduct).toHaveBeenCalledWith(1);
   });
 
-  it('should dispatch showDeleteProductModal on update event', () => {
-    const action = ProductListViewActions.showDeleteProductModal();
+  it('should call showDeleteProductModal on update event', () => {
+    spyOn(facade, 'showDeleteProductModal');
     component.onDelete(1);
-    expect(store.dispatch).toHaveBeenCalledWith(action);
+    expect(facade.showDeleteProductModal).toHaveBeenCalledWith();
   });
 
-  it('should dispatch selectProduct on deletee event', () => {
-    const action = ProductListViewActions.selectProduct({ id: 1 });
+  it('should call selectProduct on delete event', () => {
+    spyOn(facade, 'selectProduct');
     component.onDelete(1);
-    expect(store.dispatch).toHaveBeenCalledWith(action);
+    expect(facade.selectProduct).toHaveBeenCalledWith(1);
+  });
+
+  it('should call changePage when page change', () => {
+    spyOn(facade, 'changePage');
+    component.onPageChanged(1);
+    expect(facade.changePage).toHaveBeenCalledWith(1);
   });
 });

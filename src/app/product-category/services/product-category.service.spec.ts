@@ -43,9 +43,11 @@ describe('ProductCategoryService', () => {
         name: 'name 2'
       }
     ];
+
     const productCategoriesNormalized = normalize(productCategories, [productCategorySchema]);
     const response = cold('-a|', { a: productCategories });
     const expected = cold('-b|', { b: productCategoriesNormalized });
+
     http.get = jest.fn(() => response);
 
     expect(service.loadProductCategories()).toBeObservable(expected);
@@ -55,7 +57,7 @@ describe('ProductCategoryService', () => {
   it('should update productCategory, and return productCategory updated', () => {
     const productCategory = {
       name: 'name 1'
-    };
+    } as ProductCategory;
     const id = 1;
     const data = {
       id,
@@ -97,7 +99,7 @@ describe('ProductCategoryService', () => {
     const productCategory = {
       id: 1,
       name: 'name 1'
-    };
+    } as ProductCategory;
 
     const response = cold('-a|', { a: {} });
     const expected = cold('-b|', { b: productCategory.id });

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
-import { switchMap, map, catchError, mergeMap, tap } from 'rxjs/operators';
+import { switchMap, map, catchError, mergeMap, tap, withLatestFrom  } from 'rxjs/operators';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import {
   ProductUpdateModalComponent,
@@ -19,10 +19,9 @@ import {
   ProductAddModalActions,
   ProductDeleteModalActions
 } from '@app/product/state/actions';
-
 import { ToasterActions } from '@app/core/state/actions';
-
 import { ProductService } from '@app/product/services';
+import { ProductFacade } from '@app/product/state/product.facade';
 import { CRUD_MODAL_CONFIG } from '@app/shared/models/modal-config';
 
 @Injectable()
@@ -31,17 +30,30 @@ export class ProductEffects {
     private actions$: Actions,
     private service: ProductService,
     private ts: TranslateService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private facade: ProductFacade
   ) {}
+
+  changePage$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ProductListViewActions.changePage),
+      map(() => ProductListViewActions.loadProducts())
+    )
+  );
+
   loadProducts$ = createEffect(() =>
     this.actions$.pipe(
       ofType(
         ProductListViewActions.loadProducts
       ),
-      switchMap(() => {
-        return this.service.loadProducts().pipe(
-          map(products => {
-            return ProductApiActions.loadProductSuccess({ products });
+      withLatestFrom(this.facade.config$),
+      switchMap(([_, config]) => {
+        return this.service.loadProducts(config).pipe(
+          map(results => {
+            return ProductApiActions.loadProductSuccess({
+              products: results.products,
+              meta: results.meta
+            });
           }),
           catchError(error =>
             of(

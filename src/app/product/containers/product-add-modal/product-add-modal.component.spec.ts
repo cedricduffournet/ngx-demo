@@ -1,8 +1,8 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { Store, MemoizedSelector } from '@ngrx/store';
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { provideMockStore } from '@ngrx/store/testing';
+import { of } from 'rxjs';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -11,19 +11,17 @@ import { ValidationActionModule } from '@app/shared/validation-action';
 import { ModalWrapperModule } from '@app/shared/modal';
 
 import { ProductAddModalComponent } from '@app/product/containers';
-import { ProductAddModalActions } from '@app/product/state/actions';
 import {
   ProductAddComponent,
   ProductFormComponent
 } from '@app/product/components';
 import { Product } from '@app/product/models/product';
-import * as fromCivilities from '@app/product/state/reducers';
+import { ProductFacade } from '@app/product/state/product.facade';
 
 describe('ProductAddModalComponent', () => {
   let fixture: ComponentFixture<ProductAddModalComponent>;
   let component: ProductAddModalComponent;
-  let store: MockStore<fromCivilities.State>;
-  let added: MemoizedSelector<fromCivilities.State, boolean>;
+  let facade: ProductFacade;
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -38,17 +36,21 @@ describe('ProductAddModalComponent', () => {
         ReactiveFormsModule,
         ModalWrapperModule
       ],
-      providers: [provideMockStore(), BsModalRef]
+      providers: [
+        provideMockStore(),
+        BsModalRef,
+        {
+          provide: ProductFacade,
+          useValue: {
+            added$: of(false),
+            addProduct: jest.fn()
+          }
+        }
+      ]
     });
-
+    facade = TestBed.get(ProductFacade);
     fixture = TestBed.createComponent(ProductAddModalComponent);
     component = fixture.componentInstance;
-    store = TestBed.get(Store);
-    added = store.overrideSelector(
-      fromCivilities.getProductCollectionAdded,
-      false
-    );
-    spyOn(store, 'dispatch');
   });
 
   it('should be created', () => {
@@ -57,29 +59,35 @@ describe('ProductAddModalComponent', () => {
     expect(fixture).toMatchSnapshot();
   });
 
-  it('should dispatch a addProduct event on submit', () => {
+  it('should call addProduct event on submit', () => {
+    spyOn(facade, 'addProduct');
     const product = {
       name: 'name'
     } as Product;
-    const action = ProductAddModalActions.addProduct({ product });
     fixture.detectChanges();
     component.onAdd(product);
 
-    expect(store.dispatch).toHaveBeenCalledWith(action);
+    expect(facade.addProduct).toHaveBeenCalledWith(product);
   });
 
-  it('should close modal after product added', () => {
+  it('should close if product added', () => {
     spyOn(component.bsModalRef, 'hide');
+    facade.added$ = of(true);
     fixture.detectChanges();
-    added.setResult(true);
-    // need this to trigger state change (see : https://github.com/ngrx/platform/issues/2000)
-    store.setState({} as any);
     expect(component.bsModalRef.hide).toHaveBeenCalled();
   });
 
   it('should close modal on cancel', () => {
+    fixture.detectChanges();
     spyOn(component.bsModalRef, 'hide');
     component.onCancel();
     expect(component.bsModalRef.hide).toHaveBeenCalled();
+  });
+
+  it('should unsubscribe subscription when destroyed', () => {
+    fixture.detectChanges();
+    spyOn(component.subscription, 'unsubscribe');
+    component.ngOnDestroy();
+    expect(component.subscription.unsubscribe).toHaveBeenCalled();
   });
 });

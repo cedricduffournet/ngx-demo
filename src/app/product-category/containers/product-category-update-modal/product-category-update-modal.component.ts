@@ -1,13 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { Store, select } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
-import * as fromProductCategories from '@app/product-category/state/reducers';
-import { ProductCategoryUpdateModalActions } from '@app/product-category/state/actions';
 import { ProductCategory } from '@app/product-category/models/product-category';
+import { ProductCategoryFacade } from '@app/product-category/state/product-category.facade';
 
 @Component({
   selector: 'app-product-category-update-modal',
@@ -19,21 +17,12 @@ export class ProductCategoryUpdateModalComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   selectedProductCategory$: Observable<ProductCategory>;
 
-  constructor(
-    public bsModalRef: BsModalRef,
-    public store: Store<fromProductCategories.State>
-  ) {}
+  constructor(public bsModalRef: BsModalRef, public facade: ProductCategoryFacade) {}
 
   ngOnInit() {
-    this.selectedProductCategory$ = this.store.pipe(
-      select(fromProductCategories.getSelectedProductCategory)
-    );
-    this.updated$ = this.store.pipe(
-      select(fromProductCategories.getProductCategoryEntitiesUpdated)
-    );
-    this.updating$ = this.store.pipe(
-      select(fromProductCategories.getProductCategoryEntitiesUpdating)
-    );
+    this.selectedProductCategory$ = this.facade.selected$;
+    this.updated$ = this.facade.updated$;
+    this.updating$ = this.facade.updating$;
 
     this.subscription = this.updated$
       .pipe(filter(updated => updated))
@@ -49,6 +38,6 @@ export class ProductCategoryUpdateModalComponent implements OnInit, OnDestroy {
   }
 
   onUpdate(data: { id: number; productCategory: ProductCategory }) {
-    this.store.dispatch(ProductCategoryUpdateModalActions.updateProductCategory({ data }));
+     this.facade.updateProductCategory(data);
   }
 }

@@ -44,6 +44,7 @@ describe('ProductCategoryCollectionReducer', () => {
         },
         result: [1, 2]
       };
+
       const action = ProductCategoryApiActions.loadProductCategorySuccess({
         productCategories
       });
@@ -132,7 +133,7 @@ describe('ProductCategoryCollectionReducer', () => {
       const productCategory = {
         id: 1,
         name: 'RemoveName'
-      };
+      } as ProductCategory;
       const action = ProductCategoryDeleteModalActions.deleteProductCategory({
         productCategory
       });

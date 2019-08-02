@@ -18,6 +18,14 @@ describe('ProductCollectionReducer', () => {
     });
   });
 
+  describe('CHANGE_PAGE', () => {
+    it('current page shoud be set to 10', () => {
+      const action = ProductListViewActions.changePage({ page: 10 });
+      const result = reducer(fromProducts.INITIAL_STATE, action);
+      expect(result).toMatchSnapshot();
+    });
+  });
+
   describe('LOAD', () => {
     it('should set loading to true', () => {
       const action = ProductListViewActions.loadProducts();
@@ -44,8 +52,17 @@ describe('ProductCollectionReducer', () => {
         },
         result: [1, 2]
       };
+
+      const meta = {
+        itemsPerPage: 10,
+        page: 1,
+        pageCount: 1,
+        totalItems: 2
+      };
+
       const action = ProductApiActions.loadProductSuccess({
-        products
+        products,
+        meta
       });
       const result = reducer(initialState, action);
       expect(result).toMatchSnapshot();
@@ -132,7 +149,7 @@ describe('ProductCollectionReducer', () => {
       const product = {
         id: 1,
         name: 'RemoveName'
-      };
+      } as Product;
       const action = ProductDeleteModalActions.deleteProduct({
         product
       });
@@ -307,6 +324,31 @@ describe('ProductCollectionReducer', () => {
         const result = fromProducts.getLoading({
           ...fromProducts.INITIAL_STATE,
           loading: true
+        });
+
+        expect(result).toMatchSnapshot();
+      });
+    });
+
+    describe('getConfig', () => {
+      it('should retrieve config with page to 2 and itemsPerPage to 50', () => {
+        const result = fromProducts.getConfig({
+          ...fromProducts.INITIAL_STATE,
+          config: {
+            page: 2,
+            itemsPerPage: 50
+          }
+        });
+
+        expect(result).toMatchSnapshot();
+      });
+    });
+
+    describe('getTotalItems', () => {
+      it('should retrieve totalItems (100)', () => {
+        const result = fromProducts.getTotalItems({
+          ...fromProducts.INITIAL_STATE,
+          totalItems: 100
         });
 
         expect(result).toMatchSnapshot();

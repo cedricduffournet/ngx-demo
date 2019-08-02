@@ -15,6 +15,11 @@ export interface State {
   deleted: boolean;
   adding: boolean;
   added: boolean;
+  totalItems: number;
+  config: {
+    page: number;
+    itemsPerPage: number;
+  };
 }
 
 export const INITIAL_STATE: State = {
@@ -24,7 +29,12 @@ export const INITIAL_STATE: State = {
   deleting: false,
   deleted: false,
   loading: false,
-  loaded: false
+  loaded: false,
+  totalItems: 0,
+  config: {
+    page: 1,
+    itemsPerPage: 10
+  }
 };
 
 export const reducer = createReducer(
@@ -34,11 +44,12 @@ export const reducer = createReducer(
     loading: true,
     loaded: false
   })),
-  on(ProductApiActions.loadProductSuccess, (state, { products }) => ({
+  on(ProductApiActions.loadProductSuccess, (state, { products, meta }) => ({
     ...state,
     loading: false,
     loaded: true,
-    ids: products.result
+    ids: products.result,
+    totalItems: meta.totalItems
   })),
   on(ProductApiActions.loadProductFailure, state => ({
     ...state,
@@ -84,7 +95,18 @@ export const reducer = createReducer(
       deleting: false,
       deleted: false
     })
-  )
+  ),
+  on(ProductListViewActions.changePage, (state, { page }) => {
+    const config = {
+      ...state.config,
+      page
+    };
+
+    return {
+      ...state,
+      config
+    };
+  })
 );
 
 export const getIds = (state: State) => state.ids;
@@ -94,3 +116,5 @@ export const getAdding = (state: State) => state.adding;
 export const getAdded = (state: State) => state.added;
 export const getLoading = (state: State) => state.loading;
 export const getLoaded = (state: State) => state.loaded;
+export const getConfig = (state: State) => state.config;
+export const getTotalItems = (state: State) => state.totalItems;

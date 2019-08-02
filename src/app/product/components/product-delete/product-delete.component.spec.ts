@@ -12,7 +12,7 @@ describe('ProductDelete', () => {
   const product: Product = {
     id: 1,
     name: 'testname1'
-  };
+  } as Product;
 
   beforeEach(() => {
     TestBed.configureTestingModule({

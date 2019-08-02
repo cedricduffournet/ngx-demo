@@ -1,0 +1,14 @@
+
+  <pagination
+    class="mt-2"
+    [totalItems]="totalItems"
+    [maxSize]="20"
+    [rotate]="false"
+    [ngModel]="page"
+    [itemsPerPage]="itemsPerPage"
+    (pageChanged)="onPageChanged($event)"
+    previousText="{{ 'PREVIOUS' | translate }}"
+    nextText="{{ 'NEXT' | translate }}"
+  ></pagination>
+
+

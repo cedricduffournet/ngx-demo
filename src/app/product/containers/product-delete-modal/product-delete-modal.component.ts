@@ -1,13 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { Store, select } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
-import * as fromProducts from '@app/product/state/reducers';
-import { ProductDeleteModalActions } from '@app/product/state/actions';
 import { Product } from '@app/product/models/product';
+import { ProductFacade } from '@app/product/state/product.facade';
 
 @Component({
   selector: 'app-product-delete-modal',
@@ -19,21 +17,12 @@ export class ProductDeleteModalComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   selectedProduct$: Observable<Product>;
 
-  constructor(
-    public bsModalRef: BsModalRef,
-    public store: Store<fromProducts.State>
-  ) {}
+  constructor(public bsModalRef: BsModalRef, public facade: ProductFacade) {}
 
   ngOnInit() {
-    this.selectedProduct$ = this.store.pipe(
-      select(fromProducts.getSelectedProduct)
-    );
-    this.deleted$ = this.store.pipe(
-      select(fromProducts.getProductCollectionDeleted)
-    );
-    this.deleting$ = this.store.pipe(
-      select(fromProducts.getProductCollectionDeleting)
-    );
+    this.selectedProduct$ = this.facade.selected$;
+    this.deleted$ = this.facade.deleted$;
+    this.deleting$ = this.facade.deleting$;
 
     this.subscription = this.deleted$
       .pipe(filter(deleted => deleted))
@@ -49,8 +38,6 @@ export class ProductDeleteModalComponent implements OnInit, OnDestroy {
   }
 
   onDelete(product: Product) {
-    this.store.dispatch(
-      ProductDeleteModalActions.deleteProduct({ product })
-    );
+    this.facade.deleteProduct(product);
   }
 }

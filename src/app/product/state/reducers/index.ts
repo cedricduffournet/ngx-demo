@@ -8,9 +8,7 @@ import {
 import * as fromRoot from '@app/core/state/reducers';
 import * as fromProductCollection from '@app/product/state/reducers/product-collection.reducer';
 import * as fromProductEntities from '@app/product/state/reducers/product-entities.reducer';
-import * as fromAuth from '@app/authentication/state/reducers';
 import { Product } from '@app/product/models/product';
-import { Authorization } from '@app/core/models/authorization.model';
 
 export interface ProductsState {
   collection: fromProductCollection.State;
@@ -57,25 +55,39 @@ export const getProductCollectionState = createSelector(
   selectProductsState,
   state => state.collection
 );
+
 export const getProductIds = createSelector(
   getProductCollectionState,
   fromProductCollection.getIds
 );
+
 export const getProductCollectionAdding = createSelector(
   getProductCollectionState,
   fromProductCollection.getAdding
 );
+
 export const getProductCollectionAdded = createSelector(
   getProductCollectionState,
   fromProductCollection.getAdded
 );
+
 export const getProductCollectionDeleting = createSelector(
   getProductCollectionState,
   fromProductCollection.getDeleting
 );
+
 export const getProductCollectionDeleted = createSelector(
   getProductCollectionState,
   fromProductCollection.getDeleted
+);
+
+export const getProductCollectionConfig = createSelector(
+  getProductCollectionState,
+  fromProductCollection.getConfig
+);
+export const getProductCollectionTotalItems = createSelector(
+  getProductCollectionState,
+  fromProductCollection.getTotalItems
 );
 
 export const getProducts = createSelector(
@@ -96,33 +108,5 @@ export const getSelectedProduct = createSelector(
   getSelectedProductId,
   (productEntities, productId): Product => {
     return productEntities[productId];
-  }
-);
-
-export const canUpdateProduct = createSelector(
-  fromAuth.getAuthorized(['ROLE_PRODUCT_EDIT']),
-  canUpdate => canUpdate
-);
-
-export const canDeleteProduct = createSelector(
-  fromAuth.getAuthorized(['ROLE_PRODUCT_DELETE']),
-  canDelete => canDelete
-);
-
-export const canCreateProduct = createSelector(
-  fromAuth.getAuthorized(['ROLE_PRODUCT_CREATE']),
-  canCreate => canCreate
-);
-
-export const getProductAuthorization = createSelector(
-  canUpdateProduct,
-  canDeleteProduct,
-  canCreateProduct,
-  (canUpdate, canDelete, canAdd): Authorization => {
-    return {
-      update: canUpdate,
-      delete: canDelete,
-      create: canAdd
-    };
   }
 );

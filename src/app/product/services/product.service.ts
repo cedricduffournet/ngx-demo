@@ -8,6 +8,7 @@ import { Product, productSchema } from '@app/product/models/product';
 import { HttpService } from '@app/core/services/http.service';
 import { NormalizedData } from '@app/shared/models/normalized.model';
 import { PaginatedResult } from '@app/shared/models/paginated-result';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -16,15 +17,20 @@ export class ProductService {
   private path = '/products';
 
   public constructor(private httpService: HttpService) {}
-  public loadProducts(): Observable<NormalizedData> {
-    return this.httpService.get<PaginatedResult<Product>>(this.path).pipe(
-      map(res => {
-        // return normalize(res.data, [productSchema]);
-        const test = normalize(res.data, [productSchema]);
-        console.log(test);
-        return test;
-      })
-    );
+
+  public loadProducts(
+    config: any
+  ): Observable<{ products: NormalizedData; meta: any }> {
+    return this.httpService
+      .get<PaginatedResult<Product>>(this.path, this.toHttpParams(config))
+      .pipe(
+        map(res => {
+          return {
+            products: normalize(res.data, [productSchema]),
+            meta: res.meta
+          };
+        })
+      );
   }
 
   public updateProduct(data: any): Observable<NormalizedData> {
@@ -43,5 +49,12 @@ export class ProductService {
     return this.httpService
       .delete(`${this.path}/${product.id}`)
       .pipe(map(() => product.id));
+  }
+
+  public toHttpParams(params: any) {
+    return Object.getOwnPropertyNames(params).reduce(
+      (p, key) => p.set(key, params[key]),
+      new HttpParams()
+    );
   }
 }

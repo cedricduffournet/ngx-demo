@@ -1,0 +1,277 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductCollectionReducer ADD should set adding to true on ProductAddModalActions.addProduct 1`] = `
+Object {
+  "added": false,
+  "adding": true,
+  "config": Object {
+    "itemsPerPage": 10,
+    "page": 1,
+  },
+  "deleted": false,
+  "deleting": false,
+  "ids": Array [],
+  "loaded": false,
+  "loading": false,
+  "totalItems": 0,
+}
+`;
+
+exports[`ProductCollectionReducer ADD_FAILURE & SHOW_MODAL_ADD should set adding to false on ProductListViewActions.showAddProductModal 1`] = `
+Object {
+  "added": false,
+  "adding": false,
+  "config": Object {
+    "itemsPerPage": 10,
+    "page": 1,
+  },
+  "deleted": false,
+  "deleting": false,
+  "ids": Array [],
+  "loaded": false,
+  "loading": false,
+  "totalItems": 0,
+}
+`;
+
+exports[`ProductCollectionReducer ADD_FAILURE & SHOW_MODAL_ADD should set adding to false, added to false 1`] = `
+Object {
+  "added": false,
+  "adding": false,
+  "config": Object {
+    "itemsPerPage": 10,
+    "page": 1,
+  },
+  "deleted": false,
+  "deleting": false,
+  "ids": Array [],
+  "loaded": false,
+  "loading": false,
+  "totalItems": 0,
+}
+`;
+
+exports[`ProductCollectionReducer ADD_SUCCESS should set adding to false, added to true and add new product (3) to ids 1`] = `
+Object {
+  "added": true,
+  "adding": false,
+  "config": Object {
+    "itemsPerPage": 10,
+    "page": 1,
+  },
+  "deleted": false,
+  "deleting": false,
+  "ids": Array [
+    1,
+    2,
+    3,
+  ],
+  "loaded": false,
+  "loading": false,
+  "totalItems": 0,
+}
+`;
+
+exports[`ProductCollectionReducer CHANGE_PAGE current page shoud be set to 10 1`] = `
+Object {
+  "added": false,
+  "adding": false,
+  "config": Object {
+    "itemsPerPage": 10,
+    "page": 10,
+  },
+  "deleted": false,
+  "deleting": false,
+  "ids": Array [],
+  "loaded": false,
+  "loading": false,
+  "totalItems": 0,
+}
+`;
+
+exports[`ProductCollectionReducer DELETE should set deleting to true 1`] = `
+Object {
+  "added": false,
+  "adding": false,
+  "config": Object {
+    "itemsPerPage": 10,
+    "page": 1,
+  },
+  "deleted": false,
+  "deleting": true,
+  "ids": Array [],
+  "loaded": false,
+  "loading": false,
+  "totalItems": 0,
+}
+`;
+
+exports[`ProductCollectionReducer DELETE_FAILURE & SHOW_MODAL_DELETE should set removing to false, remove to false 1`] = `
+Object {
+  "added": false,
+  "adding": false,
+  "config": Object {
+    "itemsPerPage": 10,
+    "page": 1,
+  },
+  "deleted": false,
+  "deleting": false,
+  "ids": Array [],
+  "loaded": false,
+  "loading": false,
+  "removed": true,
+  "removing": true,
+  "totalItems": 0,
+}
+`;
+
+exports[`ProductCollectionReducer DELETE_FAILURE & SHOW_MODAL_DELETE should set removing to false, remove to false on ProductListViewActions.showDeleteProductModal 1`] = `
+Object {
+  "added": false,
+  "adding": false,
+  "config": Object {
+    "itemsPerPage": 10,
+    "page": 1,
+  },
+  "deleted": false,
+  "deleting": false,
+  "ids": Array [],
+  "loaded": false,
+  "loading": false,
+  "removed": true,
+  "removing": true,
+  "totalItems": 0,
+}
+`;
+
+exports[`ProductCollectionReducer DELETE_SUCCESS should set deleting to false, deleted to true and remove civproductility (1) form ids 1`] = `
+Object {
+  "added": false,
+  "adding": false,
+  "config": Object {
+    "itemsPerPage": 10,
+    "page": 1,
+  },
+  "deleted": true,
+  "deleting": false,
+  "ids": Array [
+    2,
+  ],
+  "loaded": false,
+  "loading": false,
+  "removing": true,
+  "totalItems": 0,
+}
+`;
+
+exports[`ProductCollectionReducer LOAD should set loading to true 1`] = `
+Object {
+  "added": false,
+  "adding": false,
+  "config": Object {
+    "itemsPerPage": 10,
+    "page": 1,
+  },
+  "deleted": false,
+  "deleting": false,
+  "ids": Array [],
+  "loaded": false,
+  "loading": true,
+  "totalItems": 0,
+}
+`;
+
+exports[`ProductCollectionReducer LOAD_FAILURE  should set loading to false, loaded to false 1`] = `
+Object {
+  "added": false,
+  "adding": false,
+  "config": Object {
+    "itemsPerPage": 10,
+    "page": 1,
+  },
+  "deleted": false,
+  "deleting": false,
+  "ids": Array [],
+  "loaded": false,
+  "loading": false,
+  "totalItems": 0,
+}
+`;
+
+exports[`ProductCollectionReducer LOAD_SUCCESS  should set loading to false, loaded to true and set product ids [1, 2] 1`] = `
+Object {
+  "added": false,
+  "adding": false,
+  "config": Object {
+    "itemsPerPage": 10,
+    "page": 1,
+  },
+  "deleted": false,
+  "deleting": false,
+  "ids": Array [
+    1,
+    2,
+  ],
+  "loaded": true,
+  "loading": false,
+  "totalItems": 2,
+}
+`;
+
+exports[`ProductCollectionReducer Selectors getAdded should retrieve added false 1`] = `false`;
+
+exports[`ProductCollectionReducer Selectors getAdded should retrieve added true 1`] = `true`;
+
+exports[`ProductCollectionReducer Selectors getAdding should retrieve adding false 1`] = `false`;
+
+exports[`ProductCollectionReducer Selectors getAdding should retrieve adding true 1`] = `true`;
+
+exports[`ProductCollectionReducer Selectors getConfig should retrieve config with page to 2 and itemsPerPage to 50 1`] = `
+Object {
+  "itemsPerPage": 50,
+  "page": 2,
+}
+`;
+
+exports[`ProductCollectionReducer Selectors getDeleted should retrieve deleted false 1`] = `false`;
+
+exports[`ProductCollectionReducer Selectors getDeleted should retrieve deleted true 1`] = `true`;
+
+exports[`ProductCollectionReducer Selectors getDeleting should retrieve removing false 1`] = `false`;
+
+exports[`ProductCollectionReducer Selectors getDeleting should retrieve removing true 1`] = `true`;
+
+exports[`ProductCollectionReducer Selectors getIds should retrieve ids [1,2,3] 1`] = `
+Array [
+  1,
+  2,
+  3,
+]
+`;
+
+exports[`ProductCollectionReducer Selectors getLoaded should retrieve loaded false 1`] = `false`;
+
+exports[`ProductCollectionReducer Selectors getLoaded should retrieve loaded true 1`] = `true`;
+
+exports[`ProductCollectionReducer Selectors getLoading should retrieve loading false 1`] = `false`;
+
+exports[`ProductCollectionReducer Selectors getLoading should retrieve loading true 1`] = `true`;
+
+exports[`ProductCollectionReducer Selectors getTotalItems should retrieve totalItems (100) 1`] = `100`;
+
+exports[`ProductCollectionReducer undefined action should return the default state 1`] = `
+Object {
+  "added": false,
+  "adding": false,
+  "config": Object {
+    "itemsPerPage": 10,
+    "page": 1,
+  },
+  "deleted": false,
+  "deleting": false,
+  "ids": Array [],
+  "loaded": false,
+  "loading": false,
+  "totalItems": 0,
+}
+`;

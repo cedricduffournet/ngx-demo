@@ -114,7 +114,7 @@ describe('ProductCategoryEffects', () => {
     }
 
     it(
-      'should return a loadProductCategorySuccess, when ProductCategoryListViewActions.loadProductCategories, ' +
+      'should return a loadProductCategorySuccess, when ProductCategoryListViewActions.loadProductCategories,' +
         'with productCategories, on success',
       () => {
         const action = ProductCategoryListViewActions.loadProductCategories;
@@ -337,7 +337,7 @@ describe('ProductCategoryEffects', () => {
     const productCategory = {
       id: 1,
       name: 'Name'
-    };
+    } as ProductCategory;
 
     it('should return a deleteProductCategorySuccess with delete productCategory id on success', () => {
       const idSuccess = { id: 1 };

@@ -24,16 +24,21 @@ describe('ProductEntitiesReducer', () => {
           products: {
             1: {
               name: 'Name1'
-            },
+            } as Product,
             2: {
               name: 'Name2'
-            }
+            } as Product
           }
         },
         result: [1, 2]
       };
+
+      const meta = {
+      };
+
       const action = ProductApiActions.loadProductSuccess({
-        products
+        products,
+        meta
       });
       const result = reducer(fromProducts.INITIAL_STATE, action);
 
@@ -62,11 +67,11 @@ describe('ProductEntitiesReducer', () => {
         1: {
           id: 1,
           name: 'Name 1'
-        },
+        } as Product,
         2: {
           id: 2,
           name: 'Name 2'
-        }
+        } as Product
       };
       const initialState = {
         ...fromProducts.INITIAL_STATE,
@@ -99,7 +104,7 @@ describe('ProductEntitiesReducer', () => {
         1: {
           id: 1,
           name: 'Name'
-        }
+        } as Product
       }
     };
 
@@ -126,11 +131,11 @@ describe('ProductEntitiesReducer', () => {
       1: {
         id: 1,
         name: 'Name 1'
-      },
+      } as Product,
       2: {
         id: 2,
         name: 'Name 2'
-      }
+      } as Product
     };
     const initialState = {
       ...fromProducts.INITIAL_STATE,
@@ -161,11 +166,11 @@ describe('ProductEntitiesReducer', () => {
       1: {
         id: 1,
         name: 'Name 1'
-      },
+      } as Product,
       2: {
         id: 2,
         name: 'Name 2'
-      }
+      } as Product
     };
     const initialState = {
       ...fromProducts.INITIAL_STATE,
@@ -191,11 +196,11 @@ describe('ProductEntitiesReducer', () => {
             1: {
               id: 1,
               name: 'Name 1'
-            },
+            } as Product,
             2: {
               id: 2,
               name: 'Name 2'
-            }
+            } as Product
           }
         });
 

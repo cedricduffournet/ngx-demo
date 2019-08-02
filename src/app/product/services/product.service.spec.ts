@@ -43,19 +43,30 @@ describe('ProductService', () => {
         name: 'name 2'
       }
     ];
+
+    const meta = {
+    };
+
+    const config = {
+      page: 1,
+      itemsPerPage: 10
+    };
+
     const productsNormalized = normalize(products, [productSchema]);
-    const response = cold('-a|', { a: products });
-    const expected = cold('-b|', { b: productsNormalized });
+    const response = cold('-a|', { a:  { data: products, meta }});
+    const expected = cold('-b|', { b: {products: productsNormalized, meta }});
+    const params = service.toHttpParams(config);
+
     http.get = jest.fn(() => response);
 
-    expect(service.loadProducts()).toBeObservable(expected);
-    expect(http.get).toHaveBeenCalledWith('/products');
+    expect(service.loadProducts(config)).toBeObservable(expected);
+    expect(http.get).toHaveBeenCalledWith('/products', params);
   });
 
   it('should update product, and return product updated', () => {
     const product = {
       name: 'name 1'
-    };
+    } as Product;
     const id = 1;
     const data = {
       id,
@@ -97,7 +108,7 @@ describe('ProductService', () => {
     const product = {
       id: 1,
       name: 'name 1'
-    };
+    } as Product;
 
     const response = cold('-a|', { a: {} });
     const expected = cold('-b|', { b: product.id });

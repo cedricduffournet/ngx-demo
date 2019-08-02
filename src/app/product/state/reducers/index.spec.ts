@@ -1,5 +1,4 @@
 import * as fromProducts from '@app/product/state/reducers';
-import { User } from '@app/user/models/User';
 
 describe('ProductReducer ', () => {
   const initialState: fromProducts.ProductsState = {
@@ -10,7 +9,12 @@ describe('ProductReducer ', () => {
       deleting: true,
       deleted: true,
       loading: true,
-      loaded: true
+      loaded: true,
+      totalItems: 0,
+      config: {
+        page: 1,
+        itemsPerPage: 10
+      }
     },
     products: {
       entities: {
@@ -112,7 +116,12 @@ describe('ProductReducer ', () => {
           deleting: true,
           deleted: true,
           loading: true,
-          loaded: true
+          loaded: true,
+          totalItems: 0,
+          config: {
+            page: 1,
+            itemsPerPage: 10
+          }
         });
       });
     });
@@ -209,36 +218,6 @@ describe('ProductReducer ', () => {
         ).toStrictEqual({
           id: 1,
           name: 'Name 1'
-        });
-      });
-    });
-
-    describe('canUpdateProduct', () => {
-      it('should return if can update product', () => {
-        expect(fromProducts.canUpdateProduct.projector(true)).toBe(true);
-      });
-    });
-
-    describe('canDeleteProduct', () => {
-      it('should return if can delete product', () => {
-        expect(fromProducts.canDeleteProduct.projector(true)).toBe(true);
-      });
-    });
-
-    describe('canCreateProduct', () => {
-      it('should return if can create product', () => {
-        expect(fromProducts.canCreateProduct.projector(true)).toBe(true);
-      });
-    });
-
-    describe('getProductAuthorization', () => {
-      it('should return product authorization', () => {
-        expect(
-          fromProducts.getProductAuthorization.projector(true, true, false)
-        ).toStrictEqual({
-          update: true,
-          delete: true,
-          create: false
         });
       });
     });

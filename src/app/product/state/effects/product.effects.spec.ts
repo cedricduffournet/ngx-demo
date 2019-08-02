@@ -27,6 +27,7 @@ import {
 import { CRUD_MODAL_CONFIG } from '@app/shared/models/modal-config';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { Product } from '@app/product/models/product';
+import { ProductFacade } from '@app/product/state/product.facade';
 
 describe('ProductEffects', () => {
   let effects: ProductEffects;
@@ -57,7 +58,11 @@ describe('ProductEffects', () => {
           provide: BsModalService,
           useValue: { show: jest.fn() }
         },
-        provideMockStore()
+        provideMockStore(),
+        {
+          provide: ProductFacade,
+          useValue: { config$: of({}) }
+        }
       ]
     });
     effects = TestBed.get(ProductEffects);
@@ -66,6 +71,16 @@ describe('ProductEffects', () => {
     modal = TestBed.get(BsModalService);
     actions$ = TestBed.get(Actions);
     spyOn(modal, 'show').and.callThrough();
+  });
+
+  describe('changePage$', () => {
+    it('should dipatch load product when changing page', () => {
+      const action = ProductListViewActions.changePage({ page: 1 });
+      actions$ = hot('-a-', { a: action });
+      const success = ProductListViewActions.loadProducts();
+      const expected = cold('-a-', { a: success });
+      expect(effects.changePage$).toBeObservable(expected);
+    });
   });
 
   describe('loadProducts$', () => {
@@ -80,6 +95,12 @@ describe('ProductEffects', () => {
       },
       result: [1, 2]
     };
+    const meta = {
+      itemsPerPage: 10,
+      page: 1,
+      pageCount: 1,
+      totalItems: 2
+    };
 
     function loadProductSuccess(
       action:
@@ -87,11 +108,12 @@ describe('ProductEffects', () => {
     ) {
       const createAction = action();
       const success = ProductApiActions.loadProductSuccess({
-        products
+        products,
+        meta
       });
 
       actions$ = hot('-a-', { a: createAction });
-      const response = cold('-a|', { a: products });
+      const response = cold('-a|', { a: { products, meta } });
       const expected = cold('--b', { b: success });
       service.loadProducts = jest.fn(() => response);
 
@@ -333,7 +355,7 @@ describe('ProductEffects', () => {
     const product = {
       id: 1,
       name: 'Name'
-    };
+    } as Product;
 
     it('should return a deleteProductSuccess with delete product id on success', () => {
       const idSuccess = { id: 1 };

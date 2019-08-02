@@ -24,14 +24,15 @@ describe('ProductCategoryEntitiesReducer', () => {
           productCategories: {
             1: {
               name: 'Name1'
-            },
+            } as ProductCategory,
             2: {
               name: 'Name2'
-            }
+            } as ProductCategory
           }
         },
         result: [1, 2]
       };
+
       const action = ProductCategoryApiActions.loadProductCategorySuccess({
         productCategories
       });
@@ -62,11 +63,11 @@ describe('ProductCategoryEntitiesReducer', () => {
         1: {
           id: 1,
           name: 'Name 1'
-        },
+        } as ProductCategory,
         2: {
           id: 2,
           name: 'Name 2'
-        }
+        } as ProductCategory
       };
       const initialState = {
         ...fromProductCategories.INITIAL_STATE,
@@ -99,7 +100,7 @@ describe('ProductCategoryEntitiesReducer', () => {
         1: {
           id: 1,
           name: 'Name'
-        }
+        } as ProductCategory
       }
     };
 
@@ -126,11 +127,11 @@ describe('ProductCategoryEntitiesReducer', () => {
       1: {
         id: 1,
         name: 'Name 1'
-      },
+      } as ProductCategory,
       2: {
         id: 2,
         name: 'Name 2'
-      }
+      } as ProductCategory
     };
     const initialState = {
       ...fromProductCategories.INITIAL_STATE,
@@ -161,11 +162,11 @@ describe('ProductCategoryEntitiesReducer', () => {
       1: {
         id: 1,
         name: 'Name 1'
-      },
+      } as ProductCategory,
       2: {
         id: 2,
         name: 'Name 2'
-      }
+      } as ProductCategory
     };
     const initialState = {
       ...fromProductCategories.INITIAL_STATE,
@@ -191,11 +192,11 @@ describe('ProductCategoryEntitiesReducer', () => {
             1: {
               id: 1,
               name: 'Name 1'
-            },
+            } as ProductCategory,
             2: {
               id: 2,
               name: 'Name 2'
-            }
+            } as ProductCategory
           }
         });
 

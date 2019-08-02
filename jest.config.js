@@ -21,6 +21,7 @@ module.exports = {
       '^.+\\.(ts|js|html|svg)$': 'ts-jest'
     },
     testMatch: [
+      //'<rootDir>/src/app/product/**/*.spec.ts'
       '<rootDir>/src/app/**/*.spec.ts'
     ],
     testEnvironment: 'jest-environment-jsdom-thirteen',

@@ -20,3 +20,8 @@ export const selectProduct = createAction(
   '[Product list view] Select item',
   props<{ id: number }>()
 );
+
+export const changePage = createAction(
+  '[Product list view] Change page',
+  props<{ page: number }>()
+);

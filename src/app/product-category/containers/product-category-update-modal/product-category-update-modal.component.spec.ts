@@ -1,31 +1,27 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { of } from 'rxjs';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { Store, MemoizedSelector } from '@ngrx/store';
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { FormModule } from '@app/shared/form';
 import { ValidationActionModule } from '@app/shared/validation-action';
 import { ModalWrapperModule } from '@app/shared/modal';
+import { ProductCategoryFacade } from '@app/product-category/state/product-category.facade';
 
 import {
   ProductCategoryUpdateComponent,
   ProductCategoryFormComponent
 } from '@app/product-category/components';
 import { ProductCategoryUpdateModalComponent } from '@app/product-category/containers';
-import * as fromCivilities from '@app/product-category/state/reducers';
-
-import { ProductCategoryUpdateModalActions } from '@app/product-category/state/actions';
 import { ProductCategory } from '@app/product-category/models/product-category';
 
 describe('UpdateProductCategoryModalComponent', () => {
   let fixture: ComponentFixture<ProductCategoryUpdateModalComponent>;
   let component: ProductCategoryUpdateModalComponent;
-  let store: MockStore<fromCivilities.State>;
-  let updated: MemoizedSelector<fromCivilities.State, boolean>;
-  let productCategory: MemoizedSelector<fromCivilities.State, ProductCategory>;
+  let facade: ProductCategoryFacade;
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -40,21 +36,25 @@ describe('UpdateProductCategoryModalComponent', () => {
         ModalWrapperModule,
         ReactiveFormsModule
       ],
-      providers: [provideMockStore(), BsModalRef]
+      providers: [
+        provideMockStore(),
+        BsModalRef,
+        {
+          provide: ProductCategoryFacade,
+          useValue: {
+            selected$: of({
+              name: 'TestName'
+            }),
+            updated$: of(false),
+            updateProductCategory: jest.fn()
+          }
+        }
+      ]
     });
 
     fixture = TestBed.createComponent(ProductCategoryUpdateModalComponent);
     component = fixture.componentInstance;
-    store = TestBed.get(Store);
-    updated = store.overrideSelector(
-      fromCivilities.getProductCategoryEntitiesUpdated,
-      false
-    );
-    productCategory = store.overrideSelector(fromCivilities.getSelectedProductCategory, {
-      id: 1,
-      name: 'name'
-    });
-    spyOn(store, 'dispatch');
+    facade = TestBed.get(ProductCategoryFacade);
   });
 
   it('should be created', () => {
@@ -63,31 +63,37 @@ describe('UpdateProductCategoryModalComponent', () => {
     expect(fixture).toMatchSnapshot();
   });
 
-  it('should dispatch a deleteProductCategory event on submit', () => {
+  it('should call updateProductCategory event on submit', () => {
+    spyOn(facade, 'updateProductCategory');
     const data = {
       id: 1,
       productCategory: {
         name: 'name'
       } as ProductCategory
     };
-    const action = ProductCategoryUpdateModalActions.updateProductCategory({ data });
     fixture.detectChanges();
     component.onUpdate(data);
-
-    expect(store.dispatch).toHaveBeenCalledWith(action);
+    expect(facade.updateProductCategory).toHaveBeenCalledWith(data);
   });
 
-  it('should close modal after productCategory added', () => {
+  it('should close if productCategory updated', () => {
     spyOn(component.bsModalRef, 'hide');
+    facade.updated$ = of(true);
     fixture.detectChanges();
-    updated.setResult(true);
-    store.setState({} as any);
     expect(component.bsModalRef.hide).toHaveBeenCalled();
   });
 
   it('should close modal on cancel', () => {
     spyOn(component.bsModalRef, 'hide');
+    fixture.detectChanges();
     component.onCancel();
     expect(component.bsModalRef.hide).toHaveBeenCalled();
+  });
+
+  it('should unsubscribe subscription when destroyed', () => {
+    fixture.detectChanges();
+    spyOn(component.subscription, 'unsubscribe');
+    component.ngOnDestroy();
+    expect(component.subscription.unsubscribe).toHaveBeenCalled();
   });
 });

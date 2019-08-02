@@ -10,6 +10,7 @@ import { FormModule } from '@app/shared/form';
 import { ValidationActionModule } from '@app/shared/validation-action';
 import { ModalWrapperModule } from '@app/shared/modal';
 import { ButtonModule } from '@app/shared/button';
+import { PaginatorModule } from '@app/shared/paginator';
 
 const MODULES_EXPORT = [
   CommonModule,
@@ -21,7 +22,8 @@ const MODULES_EXPORT = [
   FormModule,
   ValidationActionModule,
   ModalWrapperModule,
-  ButtonModule
+  ButtonModule,
+  PaginatorModule
 ];
 
 @NgModule({
