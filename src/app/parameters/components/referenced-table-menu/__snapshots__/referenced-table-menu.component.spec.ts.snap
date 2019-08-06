@@ -3,6 +3,7 @@
 exports[`ParameterCivilityComponent should be created 1`] = `
 <app-referenced-table-menu
   canViewCivility="false"
+  canViewProduct="false"
   canViewProductCategory="false"
 >
   <div
@@ -19,6 +20,7 @@ exports[`ParameterCivilityComponent should be created 1`] = `
     >
       
       
+      
     </ul>
   </div>
 </app-referenced-table-menu>
@@ -27,6 +29,7 @@ exports[`ParameterCivilityComponent should be created 1`] = `
 exports[`ParameterCivilityComponent should display civility menu 1`] = `
 <app-referenced-table-menu
   canViewCivility={[Function Boolean]}
+  canViewProduct="false"
   canViewProductCategory="false"
 >
   <div
@@ -53,6 +56,7 @@ exports[`ParameterCivilityComponent should display civility menu 1`] = `
            CIVILITIES 
         </a>
       </li>
+      
       
     </ul>
   </div>

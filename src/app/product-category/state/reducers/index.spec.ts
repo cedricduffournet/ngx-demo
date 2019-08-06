@@ -1,5 +1,4 @@
 import * as fromProductCategories from '@app/product-category/state/reducers';
-import { User } from '@app/user/models/User';
 
 describe('ProductCategoryReducer ', () => {
   const initialState: fromProductCategories.ProductCategoriesState = {
@@ -209,36 +208,6 @@ describe('ProductCategoryReducer ', () => {
         ).toStrictEqual({
           id: 1,
           name: 'Name 1'
-        });
-      });
-    });
-
-    describe('canUpdateProductCategory', () => {
-      it('should return if can update productCategory', () => {
-        expect(fromProductCategories.canUpdateProductCategory.projector(true)).toBe(true);
-      });
-    });
-
-    describe('canDeleteProductCategory', () => {
-      it('should return if can delete productCategory', () => {
-        expect(fromProductCategories.canDeleteProductCategory.projector(true)).toBe(true);
-      });
-    });
-
-    describe('canCreateProductCategory', () => {
-      it('should return if can create productCategory', () => {
-        expect(fromProductCategories.canCreateProductCategory.projector(true)).toBe(true);
-      });
-    });
-
-    describe('getProductCategoryAuthorization', () => {
-      it('should return productCategory authorization', () => {
-        expect(
-          fromProductCategories.getProductCategoryAuthorization.projector(true, true, false)
-        ).toStrictEqual({
-          update: true,
-          delete: true,
-          create: false
         });
       });
     });

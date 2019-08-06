@@ -13,5 +13,10 @@
         PRODUCT_CATEGORIES
       </a>
     </li>
+    <li *ngIf="canViewProduct" class="list-group-item">
+      <a [routerLink]="['products']" translate>
+        PRODUCTS
+      </a>
+    </li>
   </ul>
 </div>

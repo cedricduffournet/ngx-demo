@@ -10,6 +10,7 @@ import {
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ToasterModule } from 'angular2-toaster';
 
 import {
@@ -29,6 +30,7 @@ const MODULES: any[] = [
   }),
   ModalModule.forRoot(),
   ToasterModule.forRoot(),
+  PaginationModule.forRoot(),
   CommonModule
 ];
 

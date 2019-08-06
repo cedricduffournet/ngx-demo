@@ -1,0 +1,10 @@
+<app-modal-wrapper title="{{ 'EDIT_PRODUCT_TITLE' | translate }}">
+  <app-product-update
+    *ngIf="(loadingCategories$ | async)===false"
+    [categories]="categories$ | async"
+    [product]="selectedProduct$ | async"
+    (cancel)="onCancel()"
+    (update)="onUpdate($event)"
+    [updating]="updating$ | async"
+  ></app-product-update>
+</app-modal-wrapper>

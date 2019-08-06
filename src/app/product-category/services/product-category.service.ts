@@ -15,6 +15,7 @@ export class ProductCategoryService {
   private path = '/productcategories';
 
   public constructor(private httpService: HttpService) {}
+
   public loadProductCategories(): Observable<NormalizedData> {
     return this.httpService
       .get<ProductCategory[]>(this.path)

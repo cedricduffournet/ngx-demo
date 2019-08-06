@@ -3,10 +3,10 @@
 exports[`DeleteProductCategoryModalComponent should be created 1`] = `
 <app-product-category-delete-modal
   bsModalRef={[Function BsModalRef]}
-  deleted$={[Function Store]}
-  deleting$={[Function Store]}
-  selectedProductCategory$={[Function Store]}
-  store={[Function MockStore]}
+  deleted$={[Function Observable]}
+  deleting$="undefined"
+  facade={[Function Object]}
+  selectedProductCategory$="undefined"
   subscription={[Function Subscriber]}
 >
   <app-modal-wrapper

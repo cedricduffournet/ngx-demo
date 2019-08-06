@@ -12,7 +12,7 @@ describe('ProductCategoryDelete', () => {
   const productCategory: ProductCategory = {
     id: 1,
     name: 'testname1'
-  };
+  } as ProductCategory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({

@@ -71,7 +71,7 @@ exports[`ProductCategoryItem should display edit button 1`] = `
         >
           
           <button
-            class="btn btn-outline-primary"
+            class="btn btn-outline-primary btn-edit"
             type="button"
           >
             <fa-icon
@@ -97,7 +97,7 @@ exports[`ProductCategoryItem should display edit button 1`] = `
           </button>
           
           <button
-            class="btn btn-outline-danger"
+            class="btn btn-outline-danger btn-delete"
             type="button"
           >
             <fa-icon
@@ -160,7 +160,7 @@ exports[`ProductCategoryItem should display remove button 1`] = `
         >
           
           <button
-            class="btn btn-outline-primary"
+            class="btn btn-outline-primary btn-edit"
             type="button"
           >
             <fa-icon
@@ -186,7 +186,7 @@ exports[`ProductCategoryItem should display remove button 1`] = `
           </button>
           
           <button
-            class="btn btn-outline-danger"
+            class="btn btn-outline-danger btn-delete"
             type="button"
           >
             <fa-icon

@@ -1,13 +1,9 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { ProductCategory } from '@app/product-category/models/product-category';
-import { User } from '@app/user/models/User';
-import { Authorization } from '@app/core/models/authorization.model';
-import { ProductCategoryListViewActions } from '@app/product-category/state/actions';
-import * as fromAuth from '@app/authentication/state/reducers';
-import * as fromProductCategories from '@app/product-category/state/reducers';
+import { ProductCategoryFacade } from '@app/product-category/state/product-category.facade';
+import { AuthFacade } from '@app/authentication/state/auth.facade';
 
 @Component({
   selector: 'app-product-category-list-view',
@@ -16,33 +12,35 @@ import * as fromProductCategories from '@app/product-category/state/reducers';
 })
 export class ProductCategoryListViewComponent implements OnInit {
   productCategories$: Observable<ProductCategory[]>;
-  loggedUser$: Observable<User | null>;
-  authorization$: Observable<Authorization>;
+  canUpdate$: Observable<boolean>;
+  canDelete$: Observable<boolean>;
+  canCreate$: Observable<boolean>;
 
   public constructor(
-    private store: Store<fromProductCategories.State & fromAuth.State>
+    private facade: ProductCategoryFacade,
+    private authFacade: AuthFacade
   ) {}
 
   public ngOnInit() {
-    this.productCategories$ = this.store.pipe(select(fromProductCategories.getProductCategories));
-    this.loggedUser$ = this.store.pipe(select(fromAuth.getLoggedUser));
-    this.authorization$ = this.store.pipe(
-      select(fromProductCategories.getProductCategoryAuthorization)
-    );
-    this.store.dispatch(ProductCategoryListViewActions.loadProductCategories());
+    this.productCategories$ = this.facade.productCategories$;
+    this.canCreate$ = this.authFacade.isAuthorized(['ROLE_PRODUCT_CATEGORY_CREATE']);
+    this.canDelete$ = this.authFacade.isAuthorized(['ROLE_PRODUCT_CATEGORY_DELETE']);
+    this.canUpdate$ = this.authFacade.isAuthorized(['ROLE_PRODUCT_CATEGORY_EDIT']);
+    this.facade.loadProductCategories();
   }
 
   onAdd() {
-    this.store.dispatch(ProductCategoryListViewActions.showAddProductCategoryModal());
+    this.facade.showAddProductCategoryModal();
   }
 
   onUpdate(id: number) {
-    this.store.dispatch(ProductCategoryListViewActions.selectProductCategory({ id }));
-    this.store.dispatch(ProductCategoryListViewActions.showUpdateProductCategoryModal());
+    this.facade.selectProductCategory(id);
+    this.facade.showUpdateProductCategoryModal();
   }
 
   onDelete(id: number): void {
-    this.store.dispatch(ProductCategoryListViewActions.selectProductCategory({ id }));
-    this.store.dispatch(ProductCategoryListViewActions.showDeleteProductCategoryModal());
+    this.facade.selectProductCategory(id);
+    this.facade.showDeleteProductCategoryModal();
   }
+
 }

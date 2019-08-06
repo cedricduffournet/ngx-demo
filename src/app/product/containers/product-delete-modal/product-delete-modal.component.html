@@ -1,0 +1,8 @@
+<app-modal-wrapper title="{{ 'CONFIRM' | translate }}">
+  <app-product-delete
+    [product]="selectedProduct$ | async"
+    [deleting]="deleting$ | async"
+    (cancel)="onCancel()"
+    (delete)="onDelete($event)"
+  ></app-product-delete>
+</app-modal-wrapper>

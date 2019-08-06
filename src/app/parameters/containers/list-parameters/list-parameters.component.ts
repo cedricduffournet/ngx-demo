@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import * as fromAuth from '@app/authentication/state/reducers';
+import { AuthFacade } from '@app/authentication/state/auth.facade';
 
 @Component({
   selector: 'app-list-parameters',
@@ -12,27 +11,27 @@ import * as fromAuth from '@app/authentication/state/reducers';
 export class ListParametersComponent implements OnInit {
   canViewCivility$: Observable<boolean>;
   canViewProductCategory$: Observable<boolean>;
+  canViewProduct$: Observable<boolean>;
 
-  public constructor(private store: Store<fromAuth.State>) {}
+  public constructor(private facade: AuthFacade) {}
 
   ngOnInit() {
-    this.canViewCivility$ = this.store.pipe(
-      select(
-        fromAuth.getAuthorized([
-          'ROLE_CIVILITY_CREATE',
-          'ROLE_CIVILITY_EDIT',
-          'ROLE_CIVILITY_DELETE'
-        ])
-      )
-    );
-    this.canViewProductCategory$ = this.store.pipe(
-      select(
-        fromAuth.getAuthorized([
-          'ROLE_PRODUCT_CATEGORY_CREATE',
-          'ROLE_PRODUCT_CATEGORY_EDIT',
-          'ROLE_PRODUCT_CATEGORY_DELETE'
-        ])
-      )
-    );
+    this.canViewCivility$ = this.facade.isAuthorized([
+      'ROLE_CIVILITY_CREATE',
+      'ROLE_CIVILITY_EDIT',
+      'ROLE_CIVILITY_DELETE'
+    ]);
+
+    this.canViewProductCategory$ = this.facade.isAuthorized([
+      'ROLE_PRODUCT_CATEGORY_CREATE',
+      'ROLE_PRODUCT_CATEGORY_EDIT',
+      'ROLE_PRODUCT_CATEGORY_DELETE'
+    ]);
+
+    this.canViewProduct$ = this.facade.isAuthorized([
+      'ROLE_PRODUCT_CREATE',
+      'ROLE_PRODUCT_EDIT',
+      'ROLE_PRODUCT_DELETE'
+    ]);
   }
 }

@@ -1,0 +1,48 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()" novalidate>
+  <section class="bg-white">
+    <div class="p-3">
+      <app-text-input
+        formControlName="name"
+        label="{{ 'NAME' | translate }}"
+        [submitted]="submitted"
+      ></app-text-input>
+      <ng-container formGroupName="price">
+        <app-text-input
+          formControlName="amount"
+          type="number"
+          label="{{ 'PRICE' | translate }}"
+          [submitted]="submitted"
+        ></app-text-input>
+      </ng-container>
+      <app-text-area
+        formControlName="description"
+        label="{{ 'DESCRIPTION' | translate }}"
+        [submitted]="submitted"
+      ></app-text-area>
+      <div
+        class="form-check"
+        *ngFor="let category of categoriesControl.controls; let i = index"
+      >
+        <input
+          [formControl]="category"
+          class="form-check-input"
+          type="checkbox"
+          value=""
+          id="category{{i}}"
+          (change)="getSelectedCategories()"
+        />
+        <label class="form-check-label" for="category{{i}}">
+          {{categories[i].name}}
+        </label>
+      </div>
+    </div>
+  </section>
+  <app-wrapper-validation-action>
+    <app-validation-button
+      (cancel)="onCancel()"
+      labelConfirm="{{ 'SAVE' | translate }}"
+      labelCancel="{{ 'CANCEL' | translate }}"
+      [confirmDisabled]="processing"
+    ></app-validation-button>
+  </app-wrapper-validation-action>
+</form>

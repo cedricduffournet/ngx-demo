@@ -1,0 +1,33 @@
+<section class="bg-white border-left border-right border-bottom rounded">
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th class="align-middle" translate>
+            NAME
+          </th>
+          <th class="align-middle text-right">
+            Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          class="item"
+          appProductItem
+          *ngFor="let product of products; trackBy: trackById"
+          [authorization]="authorization"
+          [product]="product"
+          (delete)="onDelete($event)"
+          (update)="onUpdate($event)"
+        ></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<app-button-circle-right
+  label="+"
+  *ngIf="authorization.create"
+  (click)="onAdd()"
+></app-button-circle-right>

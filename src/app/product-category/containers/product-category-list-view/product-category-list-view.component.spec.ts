@@ -1,7 +1,6 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 
-import { Store } from '@ngrx/store';
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 import { TranslateModule } from '@ngx-translate/core';
 
 import {
@@ -9,14 +8,14 @@ import {
   ProductCategoryItemsComponent
 } from '@app/product-category/components';
 import { ProductCategoryListViewComponent } from '@app/product-category/containers';
-import * as fromProductCategories from '@app/product-category/state/reducers';
-import { ProductCategoryListViewActions } from '@app/product-category/state/actions';
 import { SharedModule } from '@app/shared/shared.module';
+import { ProductCategoryFacade } from '@app/product-category/state/product-category.facade';
+import { AuthFacade } from '@app/authentication/state/auth.facade';
 
 describe('ProductCategoryListViewComponent', () => {
   let fixture: ComponentFixture<ProductCategoryListViewComponent>;
   let component: ProductCategoryListViewComponent;
-  let store: MockStore<fromProductCategories.State>;
+  let facade: ProductCategoryFacade;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -27,29 +26,15 @@ describe('ProductCategoryListViewComponent', () => {
       ],
       imports: [SharedModule, TranslateModule.forRoot()],
       providers: [
-        provideMockStore({
-          selectors: [
-            {
-              selector: fromProductCategories.getProductCategories,
-              value: []
-            },
-            {
-              selector: fromProductCategories.getProductCategoryAuthorization,
-              value: {
-                create: true,
-                delete: true,
-                update: true
-              }
-            }
-          ]
-        })
+        provideMockStore(),
+        ProductCategoryFacade,
+        AuthFacade
       ]
     });
 
     fixture = TestBed.createComponent(ProductCategoryListViewComponent);
     component = fixture.componentInstance;
-    store = TestBed.get(Store);
-    spyOn(store, 'dispatch');
+    facade = TestBed.get(ProductCategoryFacade);
   });
 
   it('should be created', () => {
@@ -58,39 +43,39 @@ describe('ProductCategoryListViewComponent', () => {
     expect(fixture).toMatchSnapshot();
   });
 
-  it('should dispatch loadProductCategories on init', () => {
-    const action = ProductCategoryListViewActions.loadProductCategories();
+  it('should loadProductCategory on init', () => {
+    spyOn(facade, 'loadProductCategories');
     fixture.detectChanges();
-    expect(store.dispatch).toHaveBeenCalledWith(action);
+    expect(facade.loadProductCategories).toHaveBeenCalledWith();
   });
 
-  it('should dispatch showAddProductCategoryModal on add event', () => {
-    const action = ProductCategoryListViewActions.showAddProductCategoryModal();
+  it('should call showAddProductCategoryModal on add event', () => {
+    spyOn(facade, 'showAddProductCategoryModal');
     component.onAdd();
-    expect(store.dispatch).toHaveBeenCalledWith(action);
+    expect(facade.showAddProductCategoryModal).toHaveBeenCalledWith();
   });
 
-  it('should dispatch showUpdateProductCategoryModal on update event', () => {
-    const action = ProductCategoryListViewActions.showUpdateProductCategoryModal();
+  it('should call showUpdateProductCategoryModal on update event', () => {
+    spyOn(facade, 'showUpdateProductCategoryModal');
     component.onUpdate(1);
-    expect(store.dispatch).toHaveBeenCalledWith(action);
+    expect(facade.showUpdateProductCategoryModal).toHaveBeenCalledWith();
   });
 
-  it('should dispatch selectProductCategory on update event', () => {
-    const action = ProductCategoryListViewActions.selectProductCategory({ id: 1 });
+  it('should call selectProductCategory on update event', () => {
+    spyOn(facade, 'selectProductCategory');
     component.onUpdate(1);
-    expect(store.dispatch).toHaveBeenCalledWith(action);
+    expect(facade.selectProductCategory).toHaveBeenCalledWith(1);
   });
 
-  it('should dispatch showDeleteProductCategoryModal on update event', () => {
-    const action = ProductCategoryListViewActions.showDeleteProductCategoryModal();
+  it('should call showDeleteProductCategoryModal on update event', () => {
+    spyOn(facade, 'showDeleteProductCategoryModal');
     component.onDelete(1);
-    expect(store.dispatch).toHaveBeenCalledWith(action);
+    expect(facade.showDeleteProductCategoryModal).toHaveBeenCalledWith();
   });
 
-  it('should dispatch selectProductCategory on deletee event', () => {
-    const action = ProductCategoryListViewActions.selectProductCategory({ id: 1 });
+  it('should call selectProductCategory on delete event', () => {
+    spyOn(facade, 'selectProductCategory');
     component.onDelete(1);
-    expect(store.dispatch).toHaveBeenCalledWith(action);
+    expect(facade.selectProductCategory).toHaveBeenCalledWith(1);
   });
 });

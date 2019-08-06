@@ -1,0 +1,318 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductUpdate should be created 1`] = `
+<app-product-update
+  cancel={[Function EventEmitter]}
+  categories={[Function Array]}
+  product={[Function Object]}
+  update={[Function EventEmitter]}
+  updating="false"
+>
+  <app-product-form
+    ng-reflect-categories=""
+    ng-reflect-processing="false"
+    ng-reflect-product="[object Object]"
+  >
+    <form
+      class="ng-untouched ng-pristine ng-invalid"
+      ng-reflect-form="[object Object]"
+      novalidate=""
+    >
+      <section
+        class="bg-white"
+      >
+        <div
+          class="p-3"
+        >
+          <app-text-input
+            class="ng-untouched ng-pristine ng-valid"
+            formcontrolname="name"
+            ng-reflect-label="NAME"
+            ng-reflect-name="name"
+            ng-reflect-submitted="false"
+          >
+            <div
+              class="form-group "
+            >
+              <label
+                class="control-label"
+              >
+                NAME
+              </label>
+              <input
+                class="form-control"
+                placeholder=""
+                type="text"
+              />
+              
+              
+              
+              
+              
+              
+            </div>
+          </app-text-input>
+          
+          <app-text-input
+            class="ng-untouched ng-pristine ng-valid"
+            formcontrolname="amount"
+            ng-reflect-label="PRICE"
+            ng-reflect-name="amount"
+            ng-reflect-submitted="false"
+            ng-reflect-type="number"
+            type="number"
+          >
+            <div
+              class="form-group "
+            >
+              <label
+                class="control-label"
+              >
+                PRICE
+              </label>
+              <input
+                class="form-control"
+                placeholder=""
+                type="number"
+              />
+              
+              
+              
+              
+              
+              
+            </div>
+          </app-text-input>
+          <app-text-area
+            class="ng-untouched ng-pristine ng-invalid"
+            formcontrolname="description"
+            ng-reflect-label="DESCRIPTION"
+            ng-reflect-name="description"
+            ng-reflect-submitted="false"
+          >
+            <div
+              class="form-group "
+            >
+              <label
+                class="control-label"
+              >
+                DESCRIPTION
+              </label>
+              <textarea
+                class="form-control"
+                placeholder=""
+                rows="5"
+              >
+                
+    
+              </textarea>
+              
+              
+              
+            </div>
+          </app-text-area>
+          
+        </div>
+      </section>
+      <app-wrapper-validation-action>
+        <div
+          class="d-flex justify-content-end align-items-center p-3"
+        >
+          <app-validation-button
+            ng-reflect-confirm-disabled="false"
+            ng-reflect-label-cancel="CANCEL"
+            ng-reflect-label-confirm="SAVE"
+          >
+            <div
+              class="button-validation-action text-center d-flex justify-content-end align-items-center p-3-group"
+              ng-reflect-klass="button-validation-action text-"
+              ng-reflect-ng-class=""
+            >
+              
+              <button
+                class="btn btn-cancel btn-lg btn-light"
+                ng-reflect-klass="btn btn-cancel btn-lg"
+                ng-reflect-ng-class="btn-light"
+                type="button"
+              >
+                 CANCEL 
+              </button>
+              
+              <button
+                class="btn btn-confirm btn-lg btn-primary"
+                ng-reflect-klass="btn btn-confirm btn-lg"
+                ng-reflect-ng-class="btn-primary"
+                type="submit"
+              >
+                
+                
+                
+                <span>
+                  SAVE
+                </span>
+              </button>
+            </div>
+          </app-validation-button>
+        </div>
+      </app-wrapper-validation-action>
+    </form>
+  </app-product-form>
+</app-product-update>
+`;
+
+exports[`ProductUpdate should indicate product is updating 1`] = `
+<app-product-update
+  cancel={[Function EventEmitter]}
+  categories={[Function Array]}
+  product={[Function Object]}
+  update={[Function EventEmitter]}
+  updating={[Function Boolean]}
+>
+  <app-product-form
+    ng-reflect-categories=""
+    ng-reflect-processing="true"
+    ng-reflect-product="[object Object]"
+  >
+    <form
+      class="ng-untouched ng-pristine ng-invalid"
+      ng-reflect-form="[object Object]"
+      novalidate=""
+    >
+      <section
+        class="bg-white"
+      >
+        <div
+          class="p-3"
+        >
+          <app-text-input
+            class="ng-untouched ng-pristine ng-valid"
+            formcontrolname="name"
+            ng-reflect-label="NAME"
+            ng-reflect-name="name"
+            ng-reflect-submitted="false"
+          >
+            <div
+              class="form-group "
+            >
+              <label
+                class="control-label"
+              >
+                NAME
+              </label>
+              <input
+                class="form-control"
+                placeholder=""
+                type="text"
+              />
+              
+              
+              
+              
+              
+              
+            </div>
+          </app-text-input>
+          
+          <app-text-input
+            class="ng-untouched ng-pristine ng-valid"
+            formcontrolname="amount"
+            ng-reflect-label="PRICE"
+            ng-reflect-name="amount"
+            ng-reflect-submitted="false"
+            ng-reflect-type="number"
+            type="number"
+          >
+            <div
+              class="form-group "
+            >
+              <label
+                class="control-label"
+              >
+                PRICE
+              </label>
+              <input
+                class="form-control"
+                placeholder=""
+                type="number"
+              />
+              
+              
+              
+              
+              
+              
+            </div>
+          </app-text-input>
+          <app-text-area
+            class="ng-untouched ng-pristine ng-invalid"
+            formcontrolname="description"
+            ng-reflect-label="DESCRIPTION"
+            ng-reflect-name="description"
+            ng-reflect-submitted="false"
+          >
+            <div
+              class="form-group "
+            >
+              <label
+                class="control-label"
+              >
+                DESCRIPTION
+              </label>
+              <textarea
+                class="form-control"
+                placeholder=""
+                rows="5"
+              >
+                
+    
+              </textarea>
+              
+              
+              
+            </div>
+          </app-text-area>
+          
+        </div>
+      </section>
+      <app-wrapper-validation-action>
+        <div
+          class="d-flex justify-content-end align-items-center p-3"
+        >
+          <app-validation-button
+            ng-reflect-confirm-disabled="true"
+            ng-reflect-label-cancel="CANCEL"
+            ng-reflect-label-confirm="SAVE"
+          >
+            <div
+              class="button-validation-action text-center d-flex justify-content-end align-items-center p-3-group"
+              ng-reflect-klass="button-validation-action text-"
+              ng-reflect-ng-class=""
+            >
+              
+              
+              <button
+                class="btn btn-confirm btn-lg btn-primary"
+                disabled=""
+                ng-reflect-klass="btn btn-confirm btn-lg"
+                ng-reflect-ng-class="btn-primary"
+                type="submit"
+              >
+                
+                <span
+                  class="spinner-border spinner-border-sm align-baseline"
+                  style="font-size: 1rem;"
+                />
+                
+                <span>
+                   LOADING
+                </span>
+                
+              </button>
+            </div>
+          </app-validation-button>
+        </div>
+      </app-wrapper-validation-action>
+    </form>
+  </app-product-form>
+</app-product-update>
+`;

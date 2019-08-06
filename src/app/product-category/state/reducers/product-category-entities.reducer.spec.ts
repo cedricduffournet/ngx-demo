@@ -6,6 +6,7 @@ import {
   ProductCategoryUpdateModalActions,
   ProductCategoryApiActions
 } from '@app/product-category/state/actions';
+import { ProductActions } from '@app/product/state/actions';
 import { ProductCategory } from '@app/product-category/models/product-category';
 
 describe('ProductCategoryEntitiesReducer', () => {
@@ -24,14 +25,15 @@ describe('ProductCategoryEntitiesReducer', () => {
           productCategories: {
             1: {
               name: 'Name1'
-            },
+            } as ProductCategory,
             2: {
               name: 'Name2'
-            }
+            } as ProductCategory
           }
         },
         result: [1, 2]
       };
+
       const action = ProductCategoryApiActions.loadProductCategorySuccess({
         productCategories
       });
@@ -49,7 +51,9 @@ describe('ProductCategoryEntitiesReducer', () => {
     const data = { id, productCategory };
 
     it('should set updating to true', () => {
-      const action = ProductCategoryUpdateModalActions.updateProductCategory({ data });
+      const action = ProductCategoryUpdateModalActions.updateProductCategory({
+        data
+      });
       const result = reducer(fromProductCategories.INITIAL_STATE, action);
 
       expect(result).toMatchSnapshot();
@@ -62,11 +66,11 @@ describe('ProductCategoryEntitiesReducer', () => {
         1: {
           id: 1,
           name: 'Name 1'
-        },
+        } as ProductCategory,
         2: {
           id: 2,
           name: 'Name 2'
-        }
+        } as ProductCategory
       };
       const initialState = {
         ...fromProductCategories.INITIAL_STATE,
@@ -83,7 +87,9 @@ describe('ProductCategoryEntitiesReducer', () => {
         },
         result: 1
       };
-      const action = ProductCategoryApiActions.updateProductCategorySuccess({ productCategory });
+      const action = ProductCategoryApiActions.updateProductCategorySuccess({
+        productCategory
+      });
       const result = reducer(initialState, action);
 
       expect(result).toMatchSnapshot();
@@ -99,7 +105,7 @@ describe('ProductCategoryEntitiesReducer', () => {
         1: {
           id: 1,
           name: 'Name'
-        }
+        } as ProductCategory
       }
     };
 
@@ -107,7 +113,9 @@ describe('ProductCategoryEntitiesReducer', () => {
       const error = {
         message: 'error'
       };
-      const action = ProductCategoryApiActions.updateProductCategoryFailure({ error });
+      const action = ProductCategoryApiActions.updateProductCategoryFailure({
+        error
+      });
       const result = reducer(initialState, action);
 
       expect(result).toMatchSnapshot();
@@ -126,11 +134,11 @@ describe('ProductCategoryEntitiesReducer', () => {
       1: {
         id: 1,
         name: 'Name 1'
-      },
+      } as ProductCategory,
       2: {
         id: 2,
         name: 'Name 2'
-      }
+      } as ProductCategory
     };
     const initialState = {
       ...fromProductCategories.INITIAL_STATE,
@@ -149,7 +157,49 @@ describe('ProductCategoryEntitiesReducer', () => {
     };
 
     it('should add a new productCategory id 3', () => {
-      const action = ProductCategoryApiActions.addProductCategorySuccess({ productCategory });
+      const action = ProductCategoryApiActions.addProductCategorySuccess({
+        productCategory
+      });
+      const result = reducer(initialState, action);
+
+      expect(result).toMatchSnapshot();
+    });
+  });
+
+  describe('LOAD_PRODUCT', () => {
+    const productCategories = {
+      1: {
+        id: 1,
+        name: 'Name 1'
+      } as ProductCategory,
+      2: {
+        id: 2,
+        name: 'Name 2'
+      } as ProductCategory
+    };
+    const initialState = {
+      ...fromProductCategories.INITIAL_STATE,
+      entities: productCategories
+    };
+
+    const product = {
+      entities: {
+        productCategories: {
+          4: {
+            name: 'Name 4'
+          }
+        },
+        products: {
+          3: {
+            name: 'TestProduct'
+          }
+        }
+      },
+      result: 3
+    };
+
+    it('should add a new productCategory id 4 when loading product', () => {
+      const action = ProductActions.loadProduct({ product });
       const result = reducer(initialState, action);
 
       expect(result).toMatchSnapshot();
@@ -161,11 +211,11 @@ describe('ProductCategoryEntitiesReducer', () => {
       1: {
         id: 1,
         name: 'Name 1'
-      },
+      } as ProductCategory,
       2: {
         id: 2,
         name: 'Name 2'
-      }
+      } as ProductCategory
     };
     const initialState = {
       ...fromProductCategories.INITIAL_STATE,
@@ -175,7 +225,9 @@ describe('ProductCategoryEntitiesReducer', () => {
     const id = 1;
 
     it('should set selected productCategory (id 1)', () => {
-      const action = ProductCategoryListViewActions.selectProductCategory({ id });
+      const action = ProductCategoryListViewActions.selectProductCategory({
+        id
+      });
       const result = reducer(initialState, action);
 
       expect(result).toMatchSnapshot();
@@ -191,11 +243,11 @@ describe('ProductCategoryEntitiesReducer', () => {
             1: {
               id: 1,
               name: 'Name 1'
-            },
+            } as ProductCategory,
             2: {
               id: 2,
               name: 'Name 2'
-            }
+            } as ProductCategory
           }
         });
 

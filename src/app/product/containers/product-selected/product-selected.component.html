@@ -1,0 +1,13 @@
+<ng-container
+  *ngIf="{
+    delete: canDelete$ | async,
+    update: canUpdate$ | async
+  } as authorization"
+>
+  <app-product-details
+    [authorization]="authorization"
+    [product]="productFull$ | async"
+    (update)="onUpdate()"
+    (delete)="onDelete()"
+  ></app-product-details>
+</ng-container>

@@ -19,9 +19,7 @@ import {
   ProductCategoryAddModalActions,
   ProductCategoryDeleteModalActions
 } from '@app/product-category/state/actions';
-
 import { ToasterActions } from '@app/core/state/actions';
-
 import { ProductCategoryService } from '@app/product-category/services';
 import { CRUD_MODAL_CONFIG } from '@app/shared/models/modal-config';
 
@@ -33,6 +31,8 @@ export class ProductCategoryEffects {
     private ts: TranslateService,
     private modalService: BsModalService
   ) {}
+
+
   loadProductCategories$ = createEffect(() =>
     this.actions$.pipe(
       ofType(

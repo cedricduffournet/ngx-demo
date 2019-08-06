@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ParameterProductDetailsComponent should be created 1`] = `
+<app-parameter-product-details>
+  <app-product-details-view />
+</app-parameter-product-details>
+`;

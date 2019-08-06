@@ -29,7 +29,7 @@ exports[`ActionsItemComponent should diplay delete button 1`] = `
     
     
     <button
-      class="btn btn-outline-danger"
+      class="btn btn-outline-danger btn-delete"
       type="button"
     >
       <fa-icon
@@ -69,7 +69,7 @@ exports[`ActionsItemComponent should diplay edit button 1`] = `
   >
     
     <button
-      class="btn btn-outline-primary"
+      class="btn btn-outline-primary btn-edit"
       type="button"
     >
       <fa-icon

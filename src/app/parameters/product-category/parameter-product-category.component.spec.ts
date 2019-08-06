@@ -5,7 +5,7 @@ import { ParameterProductCategoryComponent } from '@app/parameters/product-categ
 @Component({ selector: 'app-product-category-list-view', template: '' })
 class ListProductCategoryViewStubComponent {}
 
-describe('ParameterCivilityComponent', () => {
+describe('ParameterProductCategoryComponent', () => {
   let fixture: ComponentFixture<ParameterProductCategoryComponent>;
   let component: ParameterProductCategoryComponent;
 

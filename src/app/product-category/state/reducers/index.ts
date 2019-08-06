@@ -8,9 +8,7 @@ import {
 import * as fromRoot from '@app/core/state/reducers';
 import * as fromProductCategoryCollection from '@app/product-category/state/reducers/product-category-collection.reducer';
 import * as fromProductCategoryEntities from '@app/product-category/state/reducers/product-category-entities.reducer';
-import * as fromAuth from '@app/authentication/state/reducers';
 import { ProductCategory } from '@app/product-category/models/product-category';
-import { Authorization } from '@app/core/models/authorization.model';
 
 export interface ProductCategoriesState {
   collection: fromProductCategoryCollection.State;
@@ -57,22 +55,37 @@ export const getProductCategoryCollectionState = createSelector(
   selectProductCategoriesState,
   state => state.collection
 );
+
 export const getProductCategoryIds = createSelector(
   getProductCategoryCollectionState,
   fromProductCategoryCollection.getIds
 );
+
+export const getProductCategoryCollectionLoading = createSelector(
+  getProductCategoryCollectionState,
+  fromProductCategoryCollection.getLoading
+);
+
+export const getProductCategoryCollectionLoaded = createSelector(
+  getProductCategoryCollectionState,
+  fromProductCategoryCollection.getLoaded
+);
+
 export const getProductCategoryCollectionAdding = createSelector(
   getProductCategoryCollectionState,
   fromProductCategoryCollection.getAdding
 );
+
 export const getProductCategoryCollectionAdded = createSelector(
   getProductCategoryCollectionState,
   fromProductCategoryCollection.getAdded
 );
+
 export const getProductCategoryCollectionDeleting = createSelector(
   getProductCategoryCollectionState,
   fromProductCategoryCollection.getDeleting
 );
+
 export const getProductCategoryCollectionDeleted = createSelector(
   getProductCategoryCollectionState,
   fromProductCategoryCollection.getDeleted
@@ -96,33 +109,5 @@ export const getSelectedProductCategory = createSelector(
   getSelectedProductCategoryId,
   (productCategoryEntities, productCategoryId): ProductCategory => {
     return productCategoryEntities[productCategoryId];
-  }
-);
-
-export const canUpdateProductCategory = createSelector(
-  fromAuth.getAuthorized(['ROLE_PRODUCT_CATEGORY_EDIT']),
-  canUpdate => canUpdate
-);
-
-export const canDeleteProductCategory = createSelector(
-  fromAuth.getAuthorized(['ROLE_PRODUCT_CATEGORY_DELETE']),
-  canDelete => canDelete
-);
-
-export const canCreateProductCategory = createSelector(
-  fromAuth.getAuthorized(['ROLE_PRODUCT_CATEGORY_CREATE']),
-  canCreate => canCreate
-);
-
-export const getProductCategoryAuthorization = createSelector(
-  canUpdateProductCategory,
-  canDeleteProductCategory,
-  canCreateProductCategory,
-  (canUpdate, canDelete, canAdd): Authorization => {
-    return {
-      update: canUpdate,
-      delete: canDelete,
-      create: canAdd
-    };
   }
 );

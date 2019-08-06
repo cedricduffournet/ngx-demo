@@ -1,5 +1,4 @@
 module.exports = {
   singleQuote: true,
-  trailingComma: 'none',
-  htmlWhitespaceSensitivity: "ignore"
+  trailingComma: 'none'
 };

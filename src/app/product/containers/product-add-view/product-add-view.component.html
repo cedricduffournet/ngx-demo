@@ -1,0 +1,10 @@
+<app-page-inner>
+  <h2 translate>ADD_PRODUCT_TITLE</h2>
+  <app-product-add
+    *ngIf="(loadingCategories$ | async) === false"
+    (cancel)="onCancel()"
+    (add)="onAdd($event)"
+    [adding]="adding$ | async"
+    [categories]="categories$ | async"
+  ></app-product-add>
+</app-page-inner>

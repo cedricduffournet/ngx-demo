@@ -2,21 +2,23 @@
 
 exports[`ProductCategoryListViewComponent should be created 1`] = `
 <app-product-category-list-view
-  authorization$={[Function Store]}
-  loggedUser$={[Function Store]}
+  authFacade={[Function AuthFacade]}
+  canCreate$={[Function Store]}
+  canDelete$={[Function Store]}
+  canUpdate$={[Function Store]}
+  facade={[Function ProductCategoryFacade]}
   productCategories$={[Function Store]}
-  store={[Function MockStore]}
 >
   <app-page-inner>
     <div
       class="px-3 py-3 "
     >
+      
       <div
         class="page-section"
       >
         <app-product-category-items
           ng-reflect-authorization="[object Object]"
-          ng-reflect-product-categories=""
         >
           <section
             class="bg-white border-left border-right border-bottom rounded"
@@ -50,21 +52,6 @@ exports[`ProductCategoryListViewComponent should be created 1`] = `
             </div>
           </section>
           
-          <app-button-circle-right
-            label="+"
-            ng-reflect-label="+"
-          >
-            <div>
-              <button
-                class="btn-circle btn-xl btn btn-absolute-corner-right btn-success"
-                ng-reflect-klass="btn-circle btn-xl btn btn-abso"
-                ng-reflect-ng-class="btn-success"
-                type="button"
-              >
-                 + 
-              </button>
-            </div>
-          </app-button-circle-right>
         </app-product-category-items>
       </div>
     </div>

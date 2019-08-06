@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductAddModalComponent should be created 1`] = `
+<app-product-add-view
+  added$={[Function Observable]}
+  adding$="undefined"
+  categories$={[Function Observable]}
+  facade={[Function Object]}
+  loadingCategories$="undefined"
+  productCategoryFacade={[Function Object]}
+  router={[Function Object]}
+>
+  <app-page-inner>
+    <div
+      class="px-3 py-3 "
+    >
+      <h2
+        ng-reflect-translate=""
+        translate=""
+      >
+        ADD_PRODUCT_TITLE
+      </h2>
+      
+    </div>
+  </app-page-inner>
+</app-product-add-view>
+`;
