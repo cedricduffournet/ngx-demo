@@ -1,5 +1,6 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
@@ -7,26 +8,29 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { FormModule } from '@app/shared/form';
+import { PageInnerModule } from '@app/shared/page-inner';
 import { ValidationActionModule } from '@app/shared/validation-action';
-import { ModalWrapperModule } from '@app/shared/modal';
 
-import { ProductAddModalComponent } from '@app/product/containers';
+import { ProductAddViewComponent } from '@app/product/containers';
 import {
   ProductAddComponent,
   ProductFormComponent
 } from '@app/product/components';
 import { Product } from '@app/product/models/product';
 import { ProductFacade } from '@app/product/state/product.facade';
+import { ProductCategoryFacade } from '@app/product-category/state/product-category.facade';
 
 describe('ProductAddModalComponent', () => {
-  let fixture: ComponentFixture<ProductAddModalComponent>;
-  let component: ProductAddModalComponent;
+  let fixture: ComponentFixture<ProductAddViewComponent>;
+  let component: ProductAddViewComponent;
   let facade: ProductFacade;
+  let router: Router;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
         ProductAddComponent,
-        ProductAddModalComponent,
+        ProductAddViewComponent,
         ProductFormComponent
       ],
       imports: [
@@ -34,22 +38,34 @@ describe('ProductAddModalComponent', () => {
         FormModule,
         ValidationActionModule,
         ReactiveFormsModule,
-        ModalWrapperModule
+        PageInnerModule
       ],
       providers: [
         provideMockStore(),
         BsModalRef,
+        {
+          provide: ProductCategoryFacade,
+          useValue: {
+            productCategories$: of([]),
+            loadProductCategories: jest.fn()
+          }
+        },
         {
           provide: ProductFacade,
           useValue: {
             added$: of(false),
             addProduct: jest.fn()
           }
+        },
+        {
+          provide: Router,
+          useValue: { navigate: jest.fn() }
         }
       ]
     });
+    fixture = TestBed.createComponent(ProductAddViewComponent);
     facade = TestBed.get(ProductFacade);
-    fixture = TestBed.createComponent(ProductAddModalComponent);
+    router = TestBed.get(Router);
     component = fixture.componentInstance;
   });
 
@@ -70,24 +86,9 @@ describe('ProductAddModalComponent', () => {
     expect(facade.addProduct).toHaveBeenCalledWith(product);
   });
 
-  it('should close if product added', () => {
-    spyOn(component.bsModalRef, 'hide');
-    facade.added$ = of(true);
+  it('should navigate to list on cancel', () => {
     fixture.detectChanges();
-    expect(component.bsModalRef.hide).toHaveBeenCalled();
-  });
-
-  it('should close modal on cancel', () => {
-    fixture.detectChanges();
-    spyOn(component.bsModalRef, 'hide');
     component.onCancel();
-    expect(component.bsModalRef.hide).toHaveBeenCalled();
-  });
-
-  it('should unsubscribe subscription when destroyed', () => {
-    fixture.detectChanges();
-    spyOn(component.subscription, 'unsubscribe');
-    component.ngOnDestroy();
-    expect(component.subscription.unsubscribe).toHaveBeenCalled();
+    expect(router.navigate).toHaveBeenCalledWith(['parameters/products']);
   });
 });

@@ -21,6 +21,27 @@ Object {
 }
 `;
 
+exports[`ProductCategoryEntitiesReducer LOAD_PRODUCT should add a new productCategory id 4 when loading product 1`] = `
+Object {
+  "entities": Object {
+    "1": Object {
+      "id": 1,
+      "name": "Name 1",
+    },
+    "2": Object {
+      "id": 2,
+      "name": "Name 2",
+    },
+    "4": Object {
+      "name": "Name 4",
+    },
+  },
+  "selectedId": null,
+  "updated": false,
+  "updating": false,
+}
+`;
+
 exports[`ProductCategoryEntitiesReducer LOAD_SUCCESS should return state with productCategory entities 1`] = `
 Object {
   "entities": Object {

@@ -183,7 +183,7 @@ exports[`ProductItems should display add button 1`] = `
                   >
                     
                     <button
-                      class="btn btn-outline-primary"
+                      class="btn btn-outline-primary btn-edit"
                       type="button"
                     >
                       <fa-icon
@@ -209,7 +209,7 @@ exports[`ProductItems should display add button 1`] = `
                     </button>
                     
                     <button
-                      class="btn btn-outline-danger"
+                      class="btn btn-outline-danger btn-delete"
                       type="button"
                     >
                       <fa-icon
@@ -270,7 +270,7 @@ exports[`ProductItems should display add button 1`] = `
                   >
                     
                     <button
-                      class="btn btn-outline-primary"
+                      class="btn btn-outline-primary btn-edit"
                       type="button"
                     >
                       <fa-icon
@@ -296,7 +296,7 @@ exports[`ProductItems should display add button 1`] = `
                     </button>
                     
                     <button
-                      class="btn btn-outline-danger"
+                      class="btn btn-outline-danger btn-delete"
                       type="button"
                     >
                       <fa-icon
@@ -413,7 +413,7 @@ exports[`ProductItems should not display add button 1`] = `
                   >
                     
                     <button
-                      class="btn btn-outline-primary"
+                      class="btn btn-outline-primary btn-edit"
                       type="button"
                     >
                       <fa-icon
@@ -439,7 +439,7 @@ exports[`ProductItems should not display add button 1`] = `
                     </button>
                     
                     <button
-                      class="btn btn-outline-danger"
+                      class="btn btn-outline-danger btn-delete"
                       type="button"
                     >
                       <fa-icon
@@ -500,7 +500,7 @@ exports[`ProductItems should not display add button 1`] = `
                   >
                     
                     <button
-                      class="btn btn-outline-primary"
+                      class="btn btn-outline-primary btn-edit"
                       type="button"
                     >
                       <fa-icon
@@ -526,7 +526,7 @@ exports[`ProductItems should not display add button 1`] = `
                     </button>
                     
                     <button
-                      class="btn btn-outline-danger"
+                      class="btn btn-outline-danger btn-delete"
                       type="button"
                     >
                       <fa-icon

@@ -44,8 +44,7 @@ describe('ProductService', () => {
       }
     ];
 
-    const meta = {
-    };
+    const meta = {};
 
     const config = {
       page: 1,
@@ -53,14 +52,29 @@ describe('ProductService', () => {
     };
 
     const productsNormalized = normalize(products, [productSchema]);
-    const response = cold('-a|', { a:  { data: products, meta }});
-    const expected = cold('-b|', { b: {products: productsNormalized, meta }});
+    const response = cold('-a|', { a: { data: products, meta } });
+    const expected = cold('-b|', { b: { products: productsNormalized, meta } });
     const params = service.toHttpParams(config);
 
     http.get = jest.fn(() => response);
 
     expect(service.loadProducts(config)).toBeObservable(expected);
     expect(http.get).toHaveBeenCalledWith('/products', params);
+  });
+
+  it('should retrieve one product', () => {
+    const product = {
+      id: 1,
+      name: 'name 1'
+    };
+
+    const productNormalized = normalize(product, productSchema);
+    const response = cold('-a|', { a: product });
+    const expected = cold('-b|', { b: productNormalized });
+    http.get = jest.fn(() => response);
+
+    expect(service.fetchProduct(1)).toBeObservable(expected);
+    expect(http.get).toHaveBeenCalledWith('/products/1');
   });
 
   it('should update product, and return product updated', () => {

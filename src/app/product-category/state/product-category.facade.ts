@@ -13,6 +13,7 @@ import { ProductCategory } from '@app/product-category/models/product-category';
 @Injectable()
 export class ProductCategoryFacade {
   productCategories$ = this.store.pipe(select(fromProductCategories.getProductCategories));
+  loading$ = this.store.pipe(select(fromProductCategories.getProductCategoryCollectionLoading));
   added$ = this.store.pipe(select(fromProductCategories.getProductCategoryCollectionAdded));
   adding$ = this.store.pipe(select(fromProductCategories.getProductCategoryCollectionAdding));
   updated$ = this.store.pipe(select(fromProductCategories.getProductCategoryEntitiesUpdated));

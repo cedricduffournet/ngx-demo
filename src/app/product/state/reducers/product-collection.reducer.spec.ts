@@ -137,8 +137,8 @@ describe('ProductCollectionReducer', () => {
       expect(result).toMatchSnapshot();
     });
 
-    it('should set adding to false on ProductListViewActions.showAddProductModal', () => {
-      const action = ProductListViewActions.showAddProductModal();
+    it('should set adding to false on ProductListViewActions.navigateToAddProduct', () => {
+      const action = ProductListViewActions.navigateToAddProduct();
       const result = reducer(initialState, action);
       expect(result).toMatchSnapshot();
     });

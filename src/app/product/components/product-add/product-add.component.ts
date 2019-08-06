@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 
 import { Product } from '@app/product/models/product';
+import { ProductCategory } from '@app/product-category/models/product-category';
 
 @Component({
   selector: 'app-product-add',
@@ -15,6 +16,7 @@ import { Product } from '@app/product/models/product';
 })
 export class ProductAddComponent {
   @Input() adding = false;
+  @Input() categories: ProductCategory[] = [];
   @Output() add = new EventEmitter<Product>();
   @Output() cancel = new EventEmitter<string>();
 

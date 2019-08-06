@@ -20,15 +20,24 @@ describe('ProductReducer ', () => {
       entities: {
         1: {
           id: 1,
-          name: 'Name 1'
+          name: 'Name 1',
+          description: 'Description 1',
+          priceAmount: 10000,
+          categories: [1, 2]
         },
         2: {
           id: 2,
-          name: 'Name 2'
+          name: 'Name 2',
+          description: 'Description 2',
+          priceAmount: 20000,
+          categories: [1]
         },
         3: {
           id: 3,
-          name: 'Name 3'
+          name: 'Name 3',
+          description: 'Description 3',
+          priceAmount: 30000,
+          categories: [1, 3]
         }
       },
       selectedId: 1,
@@ -46,15 +55,24 @@ describe('ProductReducer ', () => {
           entities: {
             1: {
               id: 1,
-              name: 'Name 1'
+              name: 'Name 1',
+              description: 'Description 1',
+              priceAmount: 10000,
+              categories: [1, 2]
             },
             2: {
               id: 2,
-              name: 'Name 2'
+              name: 'Name 2',
+              description: 'Description 2',
+              priceAmount: 20000,
+              categories: [1]
             },
             3: {
               id: 3,
-              name: 'Name 3'
+              name: 'Name 3',
+              description: 'Description 3',
+              priceAmount: 30000,
+              categories: [1, 3]
             }
           },
           selectedId: 1,
@@ -71,15 +89,24 @@ describe('ProductReducer ', () => {
         ).toStrictEqual({
           1: {
             id: 1,
-            name: 'Name 1'
+            name: 'Name 1',
+            description: 'Description 1',
+            priceAmount: 10000,
+            categories: [1, 2]
           },
           2: {
             id: 2,
-            name: 'Name 2'
+            name: 'Name 2',
+            description: 'Description 2',
+            priceAmount: 20000,
+            categories: [1]
           },
           3: {
             id: 3,
-            name: 'Name 3'
+            name: 'Name 3',
+            description: 'Description 3',
+            priceAmount: 30000,
+            categories: [1, 3]
           }
         });
       });
@@ -184,15 +211,24 @@ describe('ProductReducer ', () => {
         ).toStrictEqual([
           {
             id: 1,
-            name: 'Name 1'
+            name: 'Name 1',
+            description: 'Description 1',
+            priceAmount: 10000,
+            categories: [1, 2]
           },
           {
             id: 2,
-            name: 'Name 2'
+            name: 'Name 2',
+            description: 'Description 2',
+            priceAmount: 20000,
+            categories: [1]
           },
           {
             id: 3,
-            name: 'Name 3'
+            name: 'Name 3',
+            description: 'Description 3',
+            priceAmount: 30000,
+            categories: [1, 3]
           }
         ]);
       });
@@ -201,9 +237,7 @@ describe('ProductReducer ', () => {
     describe('getSelectedProductId', () => {
       it('should return id of selected product', () => {
         expect(
-          fromProducts.getSelectedProductId.projector(
-            initialState.products
-          )
+          fromProducts.getSelectedProductId.projector(initialState.products)
         ).toBe(1);
       });
     });
@@ -217,7 +251,51 @@ describe('ProductReducer ', () => {
           )
         ).toStrictEqual({
           id: 1,
-          name: 'Name 1'
+          name: 'Name 1',
+          description: 'Description 1',
+          priceAmount: 10000,
+          categories: [1, 2]
+        });
+      });
+    });
+
+    describe('getSelectedProductDenormalized', () => {
+      it('should return selected product with categories', () => {
+        expect(
+          fromProducts.getSelectedProductDenormalized.projector(
+            {
+              id: 1,
+              name: 'Name 1',
+              description: 'Description 1',
+              priceAmount: 10000,
+              categories: [1, 2]
+            },
+            {
+              1: {
+                id: 1,
+                name: 'Cat 1'
+              },
+              2: {
+                id: 2,
+                name: 'Cat 2'
+              }
+            }
+          )
+        ).toStrictEqual({
+          id: 1,
+          name: 'Name 1',
+          description: 'Description 1',
+          priceAmount: 10000,
+          categories: [
+            {
+              id: 1,
+              name: 'Cat 1'
+            },
+            {
+              id: 2,
+              name: 'Cat 2'
+            }
+          ]
         });
       });
     });

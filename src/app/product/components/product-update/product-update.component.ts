@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 
 import { Product } from '@app/product/models/product';
+import { ProductCategory } from '@app/product-category/models/product-category';
 
 @Component({
   selector: 'app-product-update',
@@ -17,6 +18,7 @@ import { Product } from '@app/product/models/product';
 export class ProductUpdateComponent {
   @Input() product: Product;
   @Input() updating = false;
+  @Input() categories: ProductCategory[] = [];
   @Output() update = new EventEmitter<{
     id: number;
     product: Product;

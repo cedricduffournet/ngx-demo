@@ -4,3 +4,4 @@ export * from './product-delete/product-delete.component';
 export * from './product-form/product-form.component';
 export * from './product-item/product-item.component';
 export * from './product-items/product-items.component';
+export * from './product-details/product-details.component';

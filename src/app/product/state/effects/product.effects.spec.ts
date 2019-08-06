@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 
 import { cold, hot } from 'jasmine-marbles';
 import { Actions } from '@ngrx/effects';
@@ -21,7 +22,6 @@ import { ToasterActions } from '@app/core/state/actions';
 
 import {
   ProductUpdateModalComponent,
-  ProductAddModalComponent,
   ProductDeleteModalComponent
 } from '@app/product/containers';
 import { CRUD_MODAL_CONFIG } from '@app/shared/models/modal-config';
@@ -35,6 +35,7 @@ describe('ProductEffects', () => {
   let ts: TranslateService;
   let service: any;
   let modal: any;
+  let router: Router;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -58,10 +59,17 @@ describe('ProductEffects', () => {
           provide: BsModalService,
           useValue: { show: jest.fn() }
         },
+        {
+          provide: Router,
+          useValue: { navigate: jest.fn() }
+        },
         provideMockStore(),
         {
           provide: ProductFacade,
-          useValue: { config$: of({}) }
+          useValue: {
+            config$: of({}),
+            selectedId$: of(1)
+          }
         }
       ]
     });
@@ -70,6 +78,7 @@ describe('ProductEffects', () => {
     ts = TestBed.get(TranslateService);
     modal = TestBed.get(BsModalService);
     actions$ = TestBed.get(Actions);
+    router = TestBed.get(Router);
     spyOn(modal, 'show').and.callThrough();
   });
 
@@ -103,8 +112,7 @@ describe('ProductEffects', () => {
     };
 
     function loadProductSuccess(
-      action:
-        | typeof ProductListViewActions.loadProducts
+      action: typeof ProductListViewActions.loadProducts
     ) {
       const createAction = action();
       const success = ProductApiActions.loadProductSuccess({
@@ -121,8 +129,7 @@ describe('ProductEffects', () => {
     }
 
     function loadProductFailure(
-      action:
-        | typeof ProductListViewActions.loadProducts
+      action: typeof ProductListViewActions.loadProducts
     ) {
       const createAction = action();
       const fail = ProductApiActions.loadProductFailure({
@@ -142,25 +149,35 @@ describe('ProductEffects', () => {
       loadProductSuccess(action);
     });
 
-
     it('should return a loadProductFailure, when ProductListViewActions.loadProducts on error', () => {
       const action = ProductListViewActions.loadProducts;
       loadProductFailure(action);
     });
-
   });
 
-  describe('addProductModal$', () => {
-    it('should open a modal with AddProductModalComponent component', (done: any) => {
-      const action = ProductListViewActions.showAddProductModal();
+  describe('navigateToAddProduct$', () => {
+    it('should navigate to add product page', (done: any) => {
+      const action = ProductListViewActions.navigateToAddProduct();
 
       actions$ = of(action);
 
-      effects.addProductModal$.subscribe(() => {
-        expect(modal.show).toHaveBeenCalledWith(
-          ProductAddModalComponent,
-          CRUD_MODAL_CONFIG
-        );
+      effects.navigateToAddProduct$.subscribe(() => {
+        expect(router.navigate).toHaveBeenCalledWith([
+          'parameters/products/new'
+        ]);
+        done();
+      });
+    });
+  });
+
+  describe('navigateToSelectedProduct$', () => {
+    it('should navigate to add product page', (done: any) => {
+      const action = ProductListViewActions.navigateToSelectedProduct();
+
+      actions$ = of(action);
+
+      effects.navigateToSelectedProduct$.subscribe(() => {
+        expect(router.navigate).toHaveBeenCalledWith(['parameters/products/1']);
         done();
       });
     });
@@ -193,6 +210,7 @@ describe('ProductEffects', () => {
       service.addProduct = jest.fn(() => response);
 
       expect(effects.addProduct$).toBeObservable(expected);
+      expect(router.navigate).toHaveBeenCalledWith(['parameters/products/1']);
     });
 
     it('should return a addProductFailure on error', () => {
@@ -247,10 +265,10 @@ describe('ProductEffects', () => {
       actions$ = of(action);
 
       effects.updateProductModal$.subscribe(() => {
-        expect(modal.show).toHaveBeenCalledWith(
-          ProductUpdateModalComponent,
-          CRUD_MODAL_CONFIG
-        );
+        expect(modal.show).toHaveBeenCalledWith(ProductUpdateModalComponent, {
+          ...CRUD_MODAL_CONFIG,
+          class: 'modal-lg'
+        });
         done();
       });
     });

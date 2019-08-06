@@ -5,6 +5,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
 import { SharedModule } from '@app/shared/shared.module';
+import { PipesModule } from '@app/shared/pipes/pipe.module';
+
+import { ProductCategoryModule } from '@app/product-category/product-category.module';
 import { ProductEffects } from '@app/product/state/effects';
 import { ProductFacade } from '@app/product/state/product.facade';
 import {
@@ -13,21 +16,27 @@ import {
   ProductDeleteComponent,
   ProductFormComponent,
   ProductItemComponent,
-  ProductItemsComponent
+  ProductItemsComponent,
+  ProductDetailsComponent
 } from '@app/product/components';
 import {
-  ProductAddModalComponent,
+  ProductAddViewComponent,
   ProductUpdateModalComponent,
   ProductDeleteModalComponent,
-  ProductListViewComponent
+  ProductListViewComponent,
+  ProductSelectedComponent,
+  ProductDetailsViewComponent
 } from '@app/product/containers';
 import { reducers } from '@app/product/state/reducers';
+import { ProductGuard } from '@app/product/services/product.guard';
 import { CoalescingComponentFactoryResolver } from '@app/coalescing-component-factory-resolver.service';
 
 @NgModule({
   imports: [
     RouterModule,
     SharedModule,
+    PipesModule,
+    ProductCategoryModule,
     EffectsModule.forFeature([ProductEffects]),
     StoreModule.forFeature('products', reducers)
   ],
@@ -39,17 +48,19 @@ import { CoalescingComponentFactoryResolver } from '@app/coalescing-component-fa
     ProductFormComponent,
     ProductItemComponent,
     ProductItemsComponent,
-    ProductAddModalComponent,
+    ProductAddViewComponent,
     ProductUpdateModalComponent,
-    ProductDeleteModalComponent
+    ProductDeleteModalComponent,
+    ProductDetailsComponent,
+    ProductSelectedComponent,
+    ProductDetailsViewComponent
   ],
   entryComponents: [
     ProductUpdateModalComponent,
-    ProductAddModalComponent,
     ProductDeleteModalComponent
   ],
-  exports: [ProductListViewComponent],
-  providers: [ProductFacade]
+  exports: [ProductListViewComponent, ProductAddViewComponent, ProductDetailsViewComponent],
+  providers: [ProductFacade, ProductGuard]
 })
 export class ProductModule {
   // see https://github.com/angular/angular/issues/14324

@@ -10,6 +10,7 @@ import { FormModule } from '@app/shared/form';
 import { ValidationActionModule } from '@app/shared/validation-action';
 import { ModalWrapperModule } from '@app/shared/modal';
 import { ProductFacade } from '@app/product/state/product.facade';
+import { ProductCategoryFacade } from '@app/product-category/state/product-category.facade';
 
 import {
   ProductUpdateComponent,
@@ -39,6 +40,13 @@ describe('UpdateProductModalComponent', () => {
       providers: [
         provideMockStore(),
         BsModalRef,
+        {
+          provide: ProductCategoryFacade,
+          useValue: {
+            productCategories$: of([]),
+            loadProductCategories: jest.fn()
+          }
+        },
         {
           provide: ProductFacade,
           useValue: {

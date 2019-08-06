@@ -61,6 +61,16 @@ export const getProductCategoryIds = createSelector(
   fromProductCategoryCollection.getIds
 );
 
+export const getProductCategoryCollectionLoading = createSelector(
+  getProductCategoryCollectionState,
+  fromProductCategoryCollection.getLoading
+);
+
+export const getProductCategoryCollectionLoaded = createSelector(
+  getProductCategoryCollectionState,
+  fromProductCategoryCollection.getLoaded
+);
+
 export const getProductCategoryCollectionAdding = createSelector(
   getProductCategoryCollectionState,
   fromProductCategoryCollection.getAdding

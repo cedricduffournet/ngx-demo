@@ -1,13 +1,20 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Action } from '@ngrx/store';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
-import { switchMap, map, catchError, mergeMap, tap, withLatestFrom  } from 'rxjs/operators';
+import {
+  switchMap,
+  map,
+  catchError,
+  mergeMap,
+  tap,
+  withLatestFrom
+} from 'rxjs/operators';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import {
   ProductUpdateModalComponent,
-  ProductAddModalComponent,
   ProductDeleteModalComponent
 } from '@app/product/containers';
 import { Observable, of } from 'rxjs';
@@ -31,7 +38,8 @@ export class ProductEffects {
     private service: ProductService,
     private ts: TranslateService,
     private modalService: BsModalService,
-    private facade: ProductFacade
+    private facade: ProductFacade,
+    private router: Router
   ) {}
 
   changePage$ = createEffect(() =>
@@ -43,9 +51,7 @@ export class ProductEffects {
 
   loadProducts$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(
-        ProductListViewActions.loadProducts
-      ),
+      ofType(ProductListViewActions.loadProducts),
       withLatestFrom(this.facade.config$),
       switchMap(([_, config]) => {
         return this.service.loadProducts(config).pipe(
@@ -67,12 +73,12 @@ export class ProductEffects {
     )
   );
 
-  addProductModal$ = createEffect(
+  navigateToAddProduct$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(ProductListViewActions.showAddProductModal),
+        ofType(ProductListViewActions.navigateToAddProduct),
         tap(() => {
-          this.modalService.show(ProductAddModalComponent, CRUD_MODAL_CONFIG);
+          this.router.navigate(['parameters/products/new']);
         })
       ),
     { dispatch: false }
@@ -87,6 +93,7 @@ export class ProductEffects {
           map(result =>
             ProductApiActions.addProductSuccess({ product: result })
           ),
+          tap(action => this.router.navigate([`parameters/products/${action.product.result}`])),
           catchError(error =>
             of(ProductApiActions.addProductFailure({ error: error.error }))
           )
@@ -95,15 +102,27 @@ export class ProductEffects {
     )
   );
 
+  navigateToSelectedProduct$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(ProductListViewActions.navigateToSelectedProduct),
+        withLatestFrom(this.facade.selectedId$),
+        tap(([_, id]) => {
+          this.router.navigate(['parameters/products/' + id]);
+        })
+      ),
+    { dispatch: false }
+  );
+
   updateProductModal$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(ProductListViewActions.showUpdateProductModal),
         tap(() => {
-          this.modalService.show(
-            ProductUpdateModalComponent,
-            CRUD_MODAL_CONFIG
-          );
+          this.modalService.show(ProductUpdateModalComponent, {
+            ...CRUD_MODAL_CONFIG,
+            class: 'modal-lg'
+          });
         })
       ),
     { dispatch: false }
@@ -155,6 +174,7 @@ export class ProductEffects {
               id: product.id
             })
           ),
+          tap(() => this.router.navigate(['parameters/products'])),
           catchError(error =>
             of(
               ProductApiActions.deleteProductFailure({

@@ -4,7 +4,9 @@ import { EntityState } from '@app/shared/models/EntityState';
 import {
   ProductListViewActions,
   ProductApiActions,
-  ProductUpdateModalActions
+  ProductUpdateModalActions,
+  ProductActions,
+  ProductDetailsActions
 } from '@app/product/state/actions';
 import { Product } from '@app/product/models/product';
 import { NormalizedData } from '@app/shared/models/normalized.model';
@@ -60,14 +62,14 @@ export const reducer = createReducer(
       updated: false
     })
   ),
-  on(ProductApiActions.addProductSuccess, (state, { product }) => ({
+  on(ProductApiActions.addProductSuccess, ProductActions.loadProduct, (state, { product }) => ({
     ...state,
     entities: {
       ...state.entities,
       ...product.entities.products
     }
   })),
-  on(ProductListViewActions.selectProduct, (state, { id }) => ({
+  on(ProductListViewActions.selectProduct, ProductDetailsActions.selectProduct, (state, { id }) => ({
     ...state,
     selectedId: id
   }))

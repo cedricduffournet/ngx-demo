@@ -17,6 +17,9 @@
   "PARAMETERS": "Paramètres",
   "REFERENCED_TABLE": "Référentiel",
   "LOADING": "Chargement...",
+  "DESCRIPTION": "Description",
+  "NEXT": "Suivant",
+  "PREVIOUS": "Précédent",
 
   "FIELD_IS_REQUIRED": "{{label}} est obligatoire",
   "FIELD_EMAIL_INVALID": "{{label}} doit être une adresse email valide",

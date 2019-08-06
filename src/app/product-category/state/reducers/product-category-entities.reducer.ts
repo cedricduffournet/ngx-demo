@@ -6,6 +6,9 @@ import {
   ProductCategoryApiActions,
   ProductCategoryUpdateModalActions
 } from '@app/product-category/state/actions';
+import {
+  ProductActions
+} from '@app/product/state/actions';
 import { ProductCategory } from '@app/product-category/models/product-category';
 import { NormalizedData } from '@app/shared/models/normalized.model';
 
@@ -65,6 +68,13 @@ export const reducer = createReducer(
     entities: {
       ...state.entities,
       ...productCategory.entities.productCategories
+    }
+  })),
+  on( ProductActions.loadProduct, (state, { product }) =>  ({
+    ...state,
+    entities: {
+      ...state.entities,
+      ...product.entities.productCategories
     }
   })),
   on(ProductCategoryListViewActions.selectProductCategory, (state, { id }) => ({

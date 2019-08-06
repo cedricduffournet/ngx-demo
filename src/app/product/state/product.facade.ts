@@ -5,8 +5,10 @@ import {
   ProductListViewActions,
   ProductAddModalActions,
   ProductDeleteModalActions,
-  ProductUpdateModalActions
+  ProductUpdateModalActions,
+  ProductActions
 } from '@app/product/state/actions';
+import * as fromRoot from '@app/core/state/reducers';
 import * as fromProducts from '@app/product/state/reducers';
 import { Product } from '@app/product/models/product';
 
@@ -16,29 +18,27 @@ export class ProductFacade {
   added$ = this.store.pipe(select(fromProducts.getProductCollectionAdded));
   adding$ = this.store.pipe(select(fromProducts.getProductCollectionAdding));
   updated$ = this.store.pipe(select(fromProducts.getProductEntitiesUpdated));
-  updating$ = this.store.pipe(
-    select(fromProducts.getProductEntitiesUpdating)
-  );
-  deleted$ = this.store.pipe(
-    select(fromProducts.getProductCollectionDeleted)
-  );
+  updating$ = this.store.pipe(select(fromProducts.getProductEntitiesUpdating));
+  deleted$ = this.store.pipe(select(fromProducts.getProductCollectionDeleted));
   deleting$ = this.store.pipe(
     select(fromProducts.getProductCollectionDeleting)
   );
   selected$ = this.store.pipe(select(fromProducts.getSelectedProduct));
+  selectedDenormalized$ = this.store.pipe(select(fromProducts.getSelectedProductDenormalized));
+  selectedId$ = this.store.pipe(select(fromProducts.getSelectedProductId));
   totalItems$ = this.store.pipe(
     select(fromProducts.getProductCollectionTotalItems)
   );
   config$ = this.store.pipe(select(fromProducts.getProductCollectionConfig));
 
-  constructor(private store: Store<fromProducts.State>) {}
+  constructor(private store: Store<any >) {}
 
   loadProducts() {
     this.store.dispatch(ProductListViewActions.loadProducts());
   }
 
-  showAddProductModal() {
-    this.store.dispatch(ProductListViewActions.showAddProductModal());
+  navigateToAddProduct() {
+    this.store.dispatch(ProductListViewActions.navigateToAddProduct());
   }
 
   selectProduct(id: number) {
@@ -58,9 +58,7 @@ export class ProductFacade {
   }
 
   deleteProduct(product: Product) {
-    this.store.dispatch(
-      ProductDeleteModalActions.deleteProduct({ product })
-    );
+    this.store.dispatch(ProductDeleteModalActions.deleteProduct({ product }));
   }
 
   updateProduct(data: { id: number; product: Product }) {
@@ -69,5 +67,9 @@ export class ProductFacade {
 
   changePage(page: number) {
     this.store.dispatch(ProductListViewActions.changePage({ page }));
+  }
+
+  navigateToSelectedProduct() {
+    this.store.dispatch(ProductListViewActions.navigateToSelectedProduct());
   }
 }

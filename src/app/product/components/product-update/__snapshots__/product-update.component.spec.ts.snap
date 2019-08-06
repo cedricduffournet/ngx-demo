@@ -3,16 +3,18 @@
 exports[`ProductUpdate should be created 1`] = `
 <app-product-update
   cancel={[Function EventEmitter]}
+  categories={[Function Array]}
   product={[Function Object]}
   update={[Function EventEmitter]}
   updating="false"
 >
   <app-product-form
+    ng-reflect-categories=""
     ng-reflect-processing="false"
     ng-reflect-product="[object Object]"
   >
     <form
-      class="ng-untouched ng-pristine ng-valid"
+      class="ng-untouched ng-pristine ng-invalid"
       ng-reflect-form="[object Object]"
       novalidate=""
     >
@@ -50,6 +52,66 @@ exports[`ProductUpdate should be created 1`] = `
               
             </div>
           </app-text-input>
+          
+          <app-text-input
+            class="ng-untouched ng-pristine ng-valid"
+            formcontrolname="amount"
+            ng-reflect-label="PRICE"
+            ng-reflect-name="amount"
+            ng-reflect-submitted="false"
+            ng-reflect-type="number"
+            type="number"
+          >
+            <div
+              class="form-group "
+            >
+              <label
+                class="control-label"
+              >
+                PRICE
+              </label>
+              <input
+                class="form-control"
+                placeholder=""
+                type="number"
+              />
+              
+              
+              
+              
+              
+              
+            </div>
+          </app-text-input>
+          <app-text-area
+            class="ng-untouched ng-pristine ng-invalid"
+            formcontrolname="description"
+            ng-reflect-label="DESCRIPTION"
+            ng-reflect-name="description"
+            ng-reflect-submitted="false"
+          >
+            <div
+              class="form-group "
+            >
+              <label
+                class="control-label"
+              >
+                DESCRIPTION
+              </label>
+              <textarea
+                class="form-control"
+                placeholder=""
+                rows="5"
+              >
+                
+    
+              </textarea>
+              
+              
+              
+            </div>
+          </app-text-area>
+          
         </div>
       </section>
       <app-wrapper-validation-action>
@@ -101,16 +163,18 @@ exports[`ProductUpdate should be created 1`] = `
 exports[`ProductUpdate should indicate product is updating 1`] = `
 <app-product-update
   cancel={[Function EventEmitter]}
+  categories={[Function Array]}
   product={[Function Object]}
   update={[Function EventEmitter]}
   updating={[Function Boolean]}
 >
   <app-product-form
+    ng-reflect-categories=""
     ng-reflect-processing="true"
     ng-reflect-product="[object Object]"
   >
     <form
-      class="ng-untouched ng-pristine ng-valid"
+      class="ng-untouched ng-pristine ng-invalid"
       ng-reflect-form="[object Object]"
       novalidate=""
     >
@@ -148,6 +212,66 @@ exports[`ProductUpdate should indicate product is updating 1`] = `
               
             </div>
           </app-text-input>
+          
+          <app-text-input
+            class="ng-untouched ng-pristine ng-valid"
+            formcontrolname="amount"
+            ng-reflect-label="PRICE"
+            ng-reflect-name="amount"
+            ng-reflect-submitted="false"
+            ng-reflect-type="number"
+            type="number"
+          >
+            <div
+              class="form-group "
+            >
+              <label
+                class="control-label"
+              >
+                PRICE
+              </label>
+              <input
+                class="form-control"
+                placeholder=""
+                type="number"
+              />
+              
+              
+              
+              
+              
+              
+            </div>
+          </app-text-input>
+          <app-text-area
+            class="ng-untouched ng-pristine ng-invalid"
+            formcontrolname="description"
+            ng-reflect-label="DESCRIPTION"
+            ng-reflect-name="description"
+            ng-reflect-submitted="false"
+          >
+            <div
+              class="form-group "
+            >
+              <label
+                class="control-label"
+              >
+                DESCRIPTION
+              </label>
+              <textarea
+                class="form-control"
+                placeholder=""
+                rows="5"
+              >
+                
+    
+              </textarea>
+              
+              
+              
+            </div>
+          </app-text-area>
+          
         </div>
       </section>
       <app-wrapper-validation-action>

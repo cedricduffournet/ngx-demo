@@ -17,7 +17,7 @@ Object {
 }
 `;
 
-exports[`ProductCollectionReducer ADD_FAILURE & SHOW_MODAL_ADD should set adding to false on ProductListViewActions.showAddProductModal 1`] = `
+exports[`ProductCollectionReducer ADD_FAILURE & SHOW_MODAL_ADD should set adding to false on ProductListViewActions.navigateToAddProduct 1`] = `
 Object {
   "added": false,
   "adding": false,

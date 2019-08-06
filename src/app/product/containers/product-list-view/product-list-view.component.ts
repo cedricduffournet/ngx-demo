@@ -34,12 +34,12 @@ export class ProductListViewComponent implements OnInit {
   }
 
   onAdd() {
-    this.facade.showAddProductModal();
+    this.facade.navigateToAddProduct();
   }
 
   onUpdate(id: number) {
     this.facade.selectProduct(id);
-    this.facade.showUpdateProductModal();
+    this.facade.navigateToSelectedProduct();
   }
 
   onDelete(id: number): void {

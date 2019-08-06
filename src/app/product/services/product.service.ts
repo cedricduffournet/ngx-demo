@@ -33,6 +33,12 @@ export class ProductService {
       );
   }
 
+  public fetchProduct(id: number): Observable<NormalizedData> {
+    return this.httpService
+      .get<Product>(`${this.path}/${id}`)
+      .pipe(map(res => normalize(res, productSchema)));
+  }
+
   public updateProduct(data: any): Observable<NormalizedData> {
     return this.httpService
       .put<Product>(`${this.path}/${data.id}`, data.product)

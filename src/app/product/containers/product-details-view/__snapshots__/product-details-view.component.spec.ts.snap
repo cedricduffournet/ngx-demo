@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductDetailsView should compile 1`] = `
+<app-product-details-view
+  route={[Function Object]}
+  store={[Function MockStore]}
+  subscription={[Function Subscriber]}
+>
+  <app-product-selected />
+</app-product-details-view>
+`;

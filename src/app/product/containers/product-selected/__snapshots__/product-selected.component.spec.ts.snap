@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductSelectedComponent should be created 1`] = `
+<app-product-selected
+  authFacade={[Function AuthFacade]}
+  canDelete$={[Function Store]}
+  canUpdate$={[Function Store]}
+  facade={[Function Object]}
+  productFull$={[Function Observable]}
+>
+  <app-product-details
+    ng-reflect-authorization="[object Object]"
+    ng-reflect-product="[object Object]"
+  >
+    <div
+      class="product-detail"
+    >
+      <h1>
+        Name
+      </h1>
+      <h2>
+         €
+      </h2>
+      <p />
+      
+      <div
+        class="category-list"
+      >
+        <span>
+          <strong>
+            Categories:
+          </strong>
+        </span>
+        
+        <span
+          class="category"
+        >
+           Name  
+        </span>
+      </div>
+      <div
+        class="float-right actions"
+      >
+        <app-actions-item>
+          <div
+            class="button-validation-action"
+          >
+            
+            
+          </div>
+        </app-actions-item>
+      </div>
+    </div>
+  </app-product-details>
+</app-product-selected>
+`;

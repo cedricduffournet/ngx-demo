@@ -1,0 +1,27 @@
+<div class="form-group {{ formGroupClass }}">
+  <label class="control-label">{{ label }}</label>
+  <textarea
+    class="form-control"
+    [class.is-invalid]="isInvalid"
+    [value]="value"
+    [placeholder]="placeholder"
+    (blur)="onTouched()"
+    (input)="onChange($event.target.value)"
+    [disabled]="isDisabled"
+    [attr.rows]="rows"
+    >{{ value }}
+  </textarea>
+  <div
+    class="invalid-feedback custom-error"
+    *ngIf="isInvalid && errorText != ''"
+  >
+    {{ errorText }}
+  </div>
+  <div class="invalid-feedback error-required" *ngIf="showErrorRequired">
+    {{ 'FIELD_IS_REQUIRED' | translate: { label: label } }}
+  </div>
+  <small class="form-text text-muted" *ngIf="helpText != ''">
+    {{ helpText }}
+  </small>
+  <ng-content></ng-content>
+</div>

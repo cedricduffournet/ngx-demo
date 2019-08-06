@@ -8,6 +8,8 @@ import {
 import * as fromRoot from '@app/core/state/reducers';
 import * as fromProductCollection from '@app/product/state/reducers/product-collection.reducer';
 import * as fromProductEntities from '@app/product/state/reducers/product-entities.reducer';
+import * as fromProductCategories from '@app/product-category/state/reducers';
+
 import { Product } from '@app/product/models/product';
 
 export interface ProductsState {
@@ -26,10 +28,9 @@ export function reducers(state: ProductsState | undefined, action: Action) {
   })(state, action);
 }
 
-export const selectProductsState = createFeatureSelector<
-  State,
-  ProductsState
->('products');
+export const selectProductsState = createFeatureSelector<ProductsState>(
+  'products'
+);
 
 export const getProductEntitiesState = createSelector(
   selectProductsState,
@@ -108,5 +109,16 @@ export const getSelectedProduct = createSelector(
   getSelectedProductId,
   (productEntities, productId): Product => {
     return productEntities[productId];
+  }
+);
+
+export const getSelectedProductDenormalized = createSelector(
+  getSelectedProduct,
+  fromProductCategories.getProductCategoryEntities,
+  (selected, productCategories) => {
+    return {
+      ...selected,
+      categories: selected.categories.map(id => productCategories[id])
+    };
   }
 );

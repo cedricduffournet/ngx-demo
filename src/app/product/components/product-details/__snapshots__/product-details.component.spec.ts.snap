@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductDetails should be created 1`] = `
+<app-product-details
+  authorization={[Function Object]}
+  delete={[Function EventEmitter]}
+  product={[Function Object]}
+  update={[Function EventEmitter]}
+>
+  <div
+    class="product-detail"
+  >
+    <h1>
+      testname
+    </h1>
+    <h2>
+      1000 €
+    </h2>
+    <p>
+      Description
+    </p>
+    
+    <div
+      class="category-list"
+    >
+      <span>
+        <strong>
+          Categories:
+        </strong>
+      </span>
+      
+      <span
+        class="category"
+      >
+         Category 1  
+      </span>
+      <span
+        class="category"
+      >
+         Category 2  
+      </span>
+    </div>
+    <div
+      class="float-right actions"
+    >
+      <app-actions-item
+        ng-reflect-with-delete="false"
+        ng-reflect-with-edit="false"
+      >
+        <div
+          class="button-validation-action"
+        >
+          
+          
+        </div>
+      </app-actions-item>
+    </div>
+  </div>
+</app-product-details>
+`;

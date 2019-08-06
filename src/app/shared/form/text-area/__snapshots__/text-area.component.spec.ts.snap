@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextAreaComponent should be created 1`] = `
+<ng-component
+  controlTest={[Function FormControl]}
+  errorText=""
+  formGroupClass=""
+  helpText=""
+  label=""
+  placeholder=""
+  showError="false"
+  submitted="false"
+>
+  <app-text-area
+    class="ng-untouched ng-pristine ng-valid"
+    ng-reflect-error-text=""
+    ng-reflect-form="[object Object]"
+    ng-reflect-form-group-class=""
+    ng-reflect-help-text=""
+    ng-reflect-label=""
+    ng-reflect-placeholder=""
+    ng-reflect-show-error="false"
+    ng-reflect-submitted="false"
+  >
+    <div
+      class="form-group "
+    >
+      <label
+        class="control-label"
+      >
+        
+      </label>
+      <textarea
+        class="form-control"
+        placeholder=""
+        rows="5"
+      >
+        
+    
+      </textarea>
+      
+      
+      
+    </div>
+  </app-text-area>
+</ng-component>
+`;

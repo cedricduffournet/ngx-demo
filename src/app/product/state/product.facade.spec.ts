@@ -33,9 +33,9 @@ describe('ProductListViewComponent', () => {
     expect(store.dispatch).toHaveBeenCalledWith(action);
   });
 
-  it('should dispatch showAddProductModal', () => {
-    const action = ProductListViewActions.showAddProductModal();
-    facade.showAddProductModal();
+  it('should dispatch navigateToAddProduct', () => {
+    const action = ProductListViewActions.navigateToAddProduct();
+    facade.navigateToAddProduct();
     expect(store.dispatch).toHaveBeenCalledWith(action);
   });
 

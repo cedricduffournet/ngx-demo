@@ -69,7 +69,7 @@ export const reducer = createReducer(
   })),
   on(
     ProductApiActions.addProductFailure,
-    ProductListViewActions.showAddProductModal,
+    ProductListViewActions.navigateToAddProduct,
     state => ({
       ...state,
       adding: false,

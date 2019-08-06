@@ -49,16 +49,16 @@ describe('ProductListViewComponent', () => {
     expect(facade.loadProducts).toHaveBeenCalledWith();
   });
 
-  it('should call showAddProductModal on add event', () => {
-    spyOn(facade, 'showAddProductModal');
+  it('should call navigateToAddProduct on add event', () => {
+    spyOn(facade, 'navigateToAddProduct');
     component.onAdd();
-    expect(facade.showAddProductModal).toHaveBeenCalledWith();
+    expect(facade.navigateToAddProduct).toHaveBeenCalledWith();
   });
 
-  it('should call showUpdateProductModal on update event', () => {
-    spyOn(facade, 'showUpdateProductModal');
+  it('should call navigateToSelectedProduct on update event', () => {
+    spyOn(facade, 'navigateToSelectedProduct');
     component.onUpdate(1);
-    expect(facade.showUpdateProductModal).toHaveBeenCalledWith();
+    expect(facade.navigateToSelectedProduct).toHaveBeenCalledWith();
   });
 
   it('should call selectProduct on update event', () => {

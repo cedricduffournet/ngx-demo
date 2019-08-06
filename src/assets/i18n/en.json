@@ -17,6 +17,9 @@
   "PARAMETERS": "Parameters",
   "REFERENCED_TABLE": "Referencial",
   "LOADING": "Loading...",
+  "DESCRIPTION": "Description",
+  "NEXT": "Next",
+  "PREVIOUS": "Previous",
 
   "FIELD_IS_REQUIRED": "{{label}} is required",
   "FIELD_EMAIL_INVALID": "{{label}} must be a valid email address",

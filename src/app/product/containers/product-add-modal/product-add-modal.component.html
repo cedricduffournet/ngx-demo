@@ -1,7 +1,0 @@
-<app-modal-wrapper title="{{ 'ADD_PRODUCT_TITLE' | translate }}">
-  <app-product-add
-    (cancel)="onCancel()"
-    (add)="onAdd($event)"
-    [adding]="adding$ | async"
-  ></app-product-add>
-</app-modal-wrapper>
