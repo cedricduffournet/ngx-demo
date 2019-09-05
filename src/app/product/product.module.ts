@@ -6,8 +6,9 @@ import { StoreModule } from '@ngrx/store';
 
 import { SharedModule } from '@app/shared/shared.module';
 import { PipesModule } from '@app/shared/pipes/pipe.module';
-
 import { ProductCategoryModule } from '@app/product-category/product-category.module';
+import { FileUploadModule } from '@app/file-upload/file-upload.module';
+
 import { ProductEffects } from '@app/product/state/effects';
 import { ProductFacade } from '@app/product/state/product.facade';
 import {
@@ -37,6 +38,7 @@ import { CoalescingComponentFactoryResolver } from '@app/coalescing-component-fa
     SharedModule,
     PipesModule,
     ProductCategoryModule,
+    FileUploadModule,
     EffectsModule.forFeature([ProductEffects]),
     StoreModule.forFeature('products', reducers)
   ],

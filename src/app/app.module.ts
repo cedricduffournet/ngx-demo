@@ -35,8 +35,9 @@ let MODULES: any[] = [
     runtimeChecks: {
       strictStateImmutability: true,
       strictActionImmutability: true,
-      strictStateSerializability: true,
-      strictActionSerializability: true
+      strictStateSerializability: true
+      // Disable as we can pass File to action wich is not serializable
+      /* strictActionSerializability: true */
     }
   }),
   StoreRouterConnectingModule.forRoot({

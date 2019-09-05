@@ -18,6 +18,8 @@ export class PaginatorComponent {
   @Output() pageChanged = new EventEmitter();
 
   onPageChanged(value: any) {
-    this.pageChanged.emit(value.page);
+    if (value.page !== this.page) {
+      this.pageChanged.emit(value.page);
+    }
   }
 }
