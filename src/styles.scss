@@ -94,9 +94,8 @@ $fa-font-path: '../node_modules/@fortawesome/fontawesome-free/webfonts';
 /**** General styles ****/
 
 .table-hover tbody tr:hover {
-    background-color:$gray-100;
+  background-color: $gray-100;
 }
-
 
 .button-validation-action {
   > button:not(:last-child) {
@@ -132,4 +131,13 @@ $fa-font-path: '../node_modules/@fortawesome/fontawesome-free/webfonts';
   to {
     opacity: 100%;
   }
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.img-product{
+  min-width: 100%;
 }

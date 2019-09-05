@@ -34,7 +34,6 @@ export class HttpService {
     return `${this.getApiHost()}${this.getApiPublicBasePath()}`;
   }
 
-  // PUT IN STARTER
   get<T>(url: string, params: HttpParams = new HttpParams()): Observable<T> {
     return this.http.get<T>(
       `${this.getApiPath()}${url}${this.getApiSuffix()}`,
@@ -42,7 +41,17 @@ export class HttpService {
     );
   }
 
-  // PUT IN STARTER
+  getBlob(
+    url: string,
+    params: HttpParams = new HttpParams()
+  ): Observable<Blob> {
+    return this.http.get(`${this.getApiPath()}${url}${this.getApiSuffix()}`, {
+      headers: this.headers,
+      params,
+      responseType: 'blob'
+    });
+  }
+
   getPublic<T>(
     url: string,
     params: HttpParams = new HttpParams()
@@ -53,7 +62,6 @@ export class HttpService {
     );
   }
 
-  // PUT IN STARTER
   post<T>(url: string, body: any | null): Observable<T> {
     return this.http.post<T>(
       `${this.getApiPath()}${url}${this.getApiSuffix()}`,
@@ -62,7 +70,6 @@ export class HttpService {
     );
   }
 
-  // PUT IN STARTER
   postPublic<T>(url: string, body: any | null): Observable<T> {
     return this.http.post<T>(
       `${this.getApiPublicPath()}${url}${this.getApiSuffix()}`,
@@ -71,14 +78,12 @@ export class HttpService {
     );
   }
 
-  // PUT IN STARTER
   postHost<T>(url: string, body: any | null): Observable<T> {
     return this.http.post<T>(`${this.getApiHost()}${url}`, body, {
       headers: this.headers
     });
   }
 
-  // PUT IN STARTER
   put<T>(url: string, body: any | null): Observable<T> {
     return this.http.put<T>(
       `${this.getApiPath()}${url}${this.getApiSuffix()}`,

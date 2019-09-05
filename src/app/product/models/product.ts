@@ -4,11 +4,17 @@ import {
   productCategorySchema
 } from '@app/product-category/models/product-category';
 
+export interface Image {
+  id: number;
+  uri: string;
+}
+
 export interface ProductBase {
   id: number;
   name: string;
   description: string;
   priceAmount: number;
+  images: Image[];
 }
 
 export interface Product extends ProductBase {

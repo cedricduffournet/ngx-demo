@@ -1,19 +1,24 @@
-<div class="product-detail">
-  <h1>{{ product.name }}</h1>
-  <h2>{{ product.priceAmount }}&nbsp;&euro;</h2>
-  <p [innerHtml]="product.description | nl2br"></p>
-  <div class="category-list" *ngIf="product.categories.length > 0">
-    <span><strong>Categories:</strong></span>
-    <span *ngFor="let category of product.categories" class="category">
-      {{ category.name }}&nbsp;
-    </span>
+<div class="product-detail row">
+  <div class="col-md-6">
+    <img class="img-fluid img-product" [attr.src]="image" alt="" />
   </div>
-  <div class="float-right actions">
-    <app-actions-item
-      (edit)="onUpdate()"
-      (delete)="onDelete()"
-      [withEdit]="authorization.update"
-      [withDelete]="authorization.delete"
-    ></app-actions-item>
+  <div class="col-md-6">
+    <h1>{{ product.name }}</h1>
+    <h2>{{ product.priceAmount }}&nbsp;&euro;</h2>
+    <p [innerHtml]="product.description | nl2br"></p>
+    <div class="category-list" *ngIf="product.categories.length > 0">
+      <span><strong>Categories:</strong></span>
+      <span *ngFor="let category of product.categories" class="category">
+        {{ category.name }}&nbsp;
+      </span>
+    </div>
+    <div class="float-right actions">
+      <app-actions-item
+        (edit)="onUpdate()"
+        (delete)="onDelete()"
+        [withEdit]="authorization.update"
+        [withDelete]="authorization.delete"
+      ></app-actions-item>
+    </div>
   </div>
 </div>
